@@ -10,12 +10,16 @@ public class Tower : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform towerRotationPoint;
     [SerializeField] private LayerMask enemyMask;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firingPoint;
 
     [Header("Attribute")]
     [SerializeField] private float targetingRange = 5f;
     [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private float bps = 1f; // Bullets Per Second
 
     private Transform target;
+    private float timeUntilFire;
 
     private void Update()
     {
@@ -31,6 +35,23 @@ public class Tower : MonoBehaviour
         {
             target = null;
         }
+        else
+        {
+            timeUntilFire += Time.deltaTime;
+
+            if (timeUntilFire >= 1f / bps)
+            {
+                Shoot();
+                timeUntilFire = 0f;
+            }
+        }
+    }
+
+    private void Shoot()
+    {
+        GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
+        Bullet bulletScript = bulletObj.GetComponent<Bullet>();
+        bulletScript.SetTarget(target);
     }
 
     private void FindTarget()
@@ -52,11 +73,11 @@ public class Tower : MonoBehaviour
     private void RotateTowardsTarget()
     {
         float angle = Mathf.Atan2(target.position.y - transform.position.y,
-        target.position.x - transform.position.x) * Mathf.Rad2Deg + 90f;
+            target.position.x - transform.position.x) * Mathf.Rad2Deg + 90f;
 
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         towerRotationPoint.rotation = Quaternion.RotateTowards(towerRotationPoint.rotation,
-        targetRotation, rotationSpeed * Time.deltaTime);
+            targetRotation, rotationSpeed * Time.deltaTime);
     }
 
 #if UNITY_EDITOR
