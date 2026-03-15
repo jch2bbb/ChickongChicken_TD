@@ -31,11 +31,15 @@ public class EnemyMovement : MonoBehaviour
 
             if (pathIndex >= LevelManager.main.path.Length)
             {
+                EnemySpawner.onEnemyDestroy.Invoke();
                 Destroy(gameObject);
                 return;
             }
 
-            target = LevelManager.main.path[pathIndex];
+            else
+            {
+                target = LevelManager.main.path[pathIndex];
+            }
         }
     }
 
