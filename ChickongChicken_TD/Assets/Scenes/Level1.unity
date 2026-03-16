@@ -1400,6 +1400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plot (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1424558261967332250, guid: a45492f49c03d4d7896f85ca8ddf2fba, type: 3}
+      propertyPath: hoverColor.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
     - target: {fileID: 3732151719038341062, guid: a45492f49c03d4d7896f85ca8ddf2fba, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4
@@ -1820,6 +1824,7 @@ GameObject:
   - component: {fileID: 393010558}
   - component: {fileID: 393010557}
   - component: {fileID: 393010559}
+  - component: {fileID: 393010560}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -1876,10 +1881,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyPrefabs:
   - {fileID: 1673178529052870306, guid: 880739c84ccf846f6ac82ca9154cf35c, type: 3}
-  baseEnemies: 8
+  baseEnemies: 18
   enemiesPerSecond: 0.5
   timeBetweenWaves: 5
   difficultyScalingFactor: 0.75
+--- !u!114 &393010560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393010556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35107934fb3434db6a2e551e8a87b460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildManager
+  towerPrefabs:
+  - {fileID: 8760189024747969949, guid: ea91bbb61460a41369bae34893e43f4c, type: 3}
 --- !u!1001 &394430134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4245,6 +4264,18 @@ PrefabInstance:
     - target: {fileID: 126065262912644668, guid: a45492f49c03d4d7896f85ca8ddf2fba, type: 3}
       propertyPath: m_Name
       value: Plot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424558261967332250, guid: a45492f49c03d4d7896f85ca8ddf2fba, type: 3}
+      propertyPath: hoverColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424558261967332250, guid: a45492f49c03d4d7896f85ca8ddf2fba, type: 3}
+      propertyPath: hoverColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1424558261967332250, guid: a45492f49c03d4d7896f85ca8ddf2fba, type: 3}
+      propertyPath: hoverColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3732151719038341062, guid: a45492f49c03d4d7896f85ca8ddf2fba, type: 3}
       propertyPath: m_LocalPosition.x
