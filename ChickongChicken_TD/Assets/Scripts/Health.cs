@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [Header("Atrributes")]
+    [Header("Attributes")]
     [SerializeField] private int hitPoints = 2;
     [SerializeField] private int currencyWorth = 50;
 

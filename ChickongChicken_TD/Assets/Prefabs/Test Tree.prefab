@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da27a4a5cd5a4aa3acd85c7f0cfc6b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
-  towerRotationPoint: {fileID: 544008795977715023}
+  treeRotationPoint: {fileID: 544008795977715023}
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
@@ -292,7 +292,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.4106443, g: 0.6981132, b: 0.38527945, a: 1}
+  m_Color: {r: 0.38431373, g: 0.6902188, b: 0.69803923, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
