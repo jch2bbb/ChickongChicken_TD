@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 9054161939117403970}
   - component: {fileID: 7854286841550449740}
   m_Layer: 0
-  m_Name: TowerShotter
+  m_Name: Test Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,9 +207,9 @@ MonoBehaviour:
     m_Bits: 64
   bulletPrefab: {fileID: 5347236877837493124, guid: 5ac5cb67f0f9d4f0d8753c714c427210, type: 3}
   firingPoint: {fileID: 6545770434865375181}
-  targetingRange: 5
+  targetingRange: 10
   rotationSpeed: 200
-  bps: 1
+  bps: 0.5
 --- !u!1 &8795844176441430353
 GameObject:
   m_ObjectHideFlags: 0

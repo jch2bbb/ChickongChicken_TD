@@ -1,90 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.ComponentModel.Design.Serialization;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
-public class Tower : MonoBehaviour
+[Serializable]
+
+public class Tower
 {
-    [Header("References")]
-    [SerializeField] private Transform towerRotationPoint;
-    [SerializeField] private LayerMask enemyMask;
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform firingPoint;
+    public string name;
+    public int cost;
+    public GameObject prefab;
 
-    [Header("Attribute")]
-    [SerializeField] private float targetingRange = 5f;
-    [SerializeField] private float rotationSpeed = 5f;
-    [SerializeField] private float bps = 1f; // Bullets Per Second
-
-    private Transform target;
-    private float timeUntilFire;
-
-    private void Update()
+    PublicKey Tower(StringBuilder _name, int _cost, GameObject _prefab)
     {
-        if (target == null)
-        {
-            FindTarget();
-            return;
-        }
-
-        RotateTowardsTarget();
-
-        if (!CheckTargetIsInRange())
-        {
-            target = null;
-        }
-        else
-        {
-            timeUntilFire += Time.deltaTime;
-
-            if (timeUntilFire >= 1f / bps)
-            {
-                Shoot();
-                timeUntilFire = 0f;
-            }
-        }
+        name = _name;
+        cost = _cost;
+        prefab = _prefab;
     }
-
-    private void Shoot()
-    {
-        GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
-        Bullet bulletScript = bulletObj.GetComponent<Bullet>();
-        bulletScript.SetTarget(target);
-    }
-
-    private void FindTarget()
-    {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targetingRange,
-            Vector2.zero, 0f, enemyMask);
-
-        if (hits.Length > 0)
-        {
-            target = hits[0].transform;
-        }
-    }
-
-    private bool CheckTargetIsInRange()
-    {
-        return Vector2.Distance(target.position, transform.position) <= targetingRange;
-    }
-
-    private void RotateTowardsTarget()
-    {
-        float angle = Mathf.Atan2(target.position.y - transform.position.y,
-            target.position.x - transform.position.x) * Mathf.Rad2Deg + 90f;
-
-        Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-        towerRotationPoint.rotation = Quaternion.RotateTowards(towerRotationPoint.rotation,
-            targetRotation, rotationSpeed * Time.deltaTime);
-    }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        Handles.color = Color.cyan;
-        Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
-    }
-#endif
 }
