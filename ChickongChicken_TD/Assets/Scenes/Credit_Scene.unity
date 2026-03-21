@@ -1349,6 +1349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextButton
   destinationScene: Home_Scene
+  buttonSFX: {fileID: 8300000, guid: b3f4c2ea6d2e42d48ab6badaf1b6ff82, type: 3}
 --- !u!114 &1753656693
 MonoBehaviour:
   m_ObjectHideFlags: 0

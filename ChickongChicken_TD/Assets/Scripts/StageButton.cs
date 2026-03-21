@@ -9,6 +9,8 @@ public class StageButton : MonoBehaviour
     [SerializeField] private GameObject popupPanel;
     [SerializeField] private TextMeshProUGUI popupTitle;
     [SerializeField] private TextMeshProUGUI popupDescription;
+    [SerializeField] private GameObject blackBG;
+
 
     [Header("This Stage's Data")]
     [SerializeField] private string stageName;
@@ -21,6 +23,11 @@ public class StageButton : MonoBehaviour
             popupTitle.text = stageName;
             popupDescription.text = stageDescription;
             popupPanel.SetActive(true);
+            blackBG.SetActive(true);
+
+            // Null check before calling
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
         }
     }
 
@@ -28,5 +35,10 @@ public class StageButton : MonoBehaviour
     {
         if (popupPanel != null)
             popupPanel.SetActive(false);
+            blackBG.SetActive(false);
+
+        // Null check before calling
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
     }
 }

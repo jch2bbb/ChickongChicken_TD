@@ -14,9 +14,14 @@ public class AudioManager : MonoBehaviour
     void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject); //prevent Destroying the audiomanager when change scene
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
     public void PlaySFX(AudioClip clip)
