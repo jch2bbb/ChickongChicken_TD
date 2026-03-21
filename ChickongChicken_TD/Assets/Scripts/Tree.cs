@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -12,6 +13,9 @@ public class Tree : MonoBehaviour
     [SerializeField] private LayerMask enemyMask;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firingPoint;
+    [SerializeField] private GameObject upgradeUI;
+    [SerializeField] private Button upgradeButton;
+
 
     [Header("Attribute")]
     [SerializeField] private float targetingRange = 5f;
@@ -78,6 +82,16 @@ public class Tree : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         treeRotationPoint.rotation = Quaternion.RotateTowards(treeRotationPoint.rotation,
             targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    public void OpenUpgradeUI()
+    {
+        upgradeUI.SetActive(true);
+    }
+
+    public void CloseUpgradeUI()
+    {
+        upgradeUI.SetActive(false);
     }
 
 #if UNITY_EDITOR

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3924311835655031510}
   - component: {fileID: -7965104549673427907}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: TankEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.6603774, g: 0.19624422, b: 0.19624422, a: 1}
+  m_Color: {r: 0.1724813, g: 0.6415094, b: 0.34783053, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   rb: {fileID: 0}
-  moveSpeed: 2
+  moveSpeed: 1
 --- !u!114 &-7965104549673427907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,5 +184,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8546993c373444122a91b9062432cc92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  hitPoints: 2
-  currencyWorth: 50
+  hitPoints: 4
+  currencyWorth: 100

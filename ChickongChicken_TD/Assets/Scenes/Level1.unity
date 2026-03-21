@@ -2174,6 +2174,7 @@ GameObject:
   - component: {fileID: 393010557}
   - component: {fileID: 393010559}
   - component: {fileID: 393010560}
+  - component: {fileID: 393010561}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -2231,10 +2232,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyPrefabs:
   - {fileID: 1673178529052870306, guid: 880739c84ccf846f6ac82ca9154cf35c, type: 3}
+  - {fileID: 1673178529052870306, guid: 880739c84ccf846f6ac82ca9154cf35c, type: 3}
+  - {fileID: 1673178529052870306, guid: 880739c84ccf846f6ac82ca9154cf35c, type: 3}
+  - {fileID: 1673178529052870306, guid: 1afd2d7dd8b754960b7a5934087233c3, type: 3}
   baseEnemies: 18
   enemiesPerSecond: 0.5
   timeBetweenWaves: 5
   difficultyScalingFactor: 0.75
+  enemiesPerSecondCap: 15
 --- !u!114 &393010560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2257,6 +2262,18 @@ MonoBehaviour:
   - name: Slowmo Tree
     cost: 200
     prefab: {fileID: 2662625364831633947, guid: 7364700da73a34cafa4ee32a9ab6aad1, type: 3}
+--- !u!114 &393010561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393010556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f16f495fa694461bae81ab42083bbff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
 --- !u!1001 &394430134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8991,15 +9008,39 @@ Tilemap:
   m_Enabled: 1
   m_Tiles: {}
   m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
+  m_TileAssetArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileMatrixArray:
+  - m_RefCount: 0
+    m_Data:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  m_TileColorArray:
+  - m_RefCount: 0
+    m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
+  m_Size: {x: 9, y: 7, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -11685,7 +11726,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000067e3dd85
+  m_ApplyToSortingLayers: 0000000067e3dd8537ebb4e1
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
