@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5886852478527007940}
   - component: {fileID: 8047360127896274431}
   m_Layer: 0
-  m_Name: Basic Charakter Spritesheet_0
+  m_Name: Basic Character Spritesheet_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
