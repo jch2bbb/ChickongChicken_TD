@@ -16,14 +16,27 @@ public class Tree : MonoBehaviour
     [SerializeField] private GameObject upgradeUI;
     [SerializeField] private Button upgradeButton;
 
-
     [Header("Attribute")]
     [SerializeField] private float targetingRange = 5f;
     [SerializeField] private float rotationSpeed = 5f;
-    [SerializeField] private float bps = 1f; // Bullets Per Second
+    [SerializeField] private float bps = 1f;
+    [SerializeField] private int baseUpgradeCost = 100;
+
+    private float bpsBase;
+    private float targetingRangeBase;
 
     private Transform target;
     private float timeUntilFire;
+
+    private int level = 1;
+
+    private void Start()
+    {
+        bpsBase = bps;
+        targetingRangeBase = targetingRange;
+
+        upgradeButton.onClick.AddListener(Upgrade);
+    }
 
     private void Update()
     {
@@ -92,6 +105,40 @@ public class Tree : MonoBehaviour
     public void CloseUpgradeUI()
     {
         upgradeUI.SetActive(false);
+        UIManager.main.SetHoveringState(false);
+    }
+
+    public void Upgrade()
+    {
+        if (CalculateCost() > LevelManager.main.currency) return;
+
+        LevelManager.main.SpendCurrency(CalculateCost());
+
+        level++;
+
+        bps = CalculateBPS();
+        targetingRange = CalculateRange();
+
+        CloseUpgradeUI();
+
+        UnityEngine.Debug.Log("New BPS: " + bps);
+        UnityEngine.Debug.Log("New Range: " + targetingRange);
+        UnityEngine.Debug.Log("New Cost: " + CalculateCost());
+    }
+
+    private int CalculateCost()
+    {
+        return Mathf.RoundToInt(baseUpgradeCost * Mathf.Pow(level, 0.8f));
+    }
+
+    private float CalculateBPS()
+    {
+        return bpsBase * Mathf.Pow(level, 0.6f);
+    }
+
+    private float CalculateRange()
+    {
+        return targetingRangeBase * Mathf.Pow(level, 0.4f);
     }
 
 #if UNITY_EDITOR
