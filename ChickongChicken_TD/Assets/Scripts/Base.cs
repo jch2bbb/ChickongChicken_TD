@@ -8,11 +8,15 @@ public class Base : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private int maxHealth = 5;
 
+    [Header("References")]
+    [SerializeField] private BaseHealthUI healthUI;
+
     private int currentHealth;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        healthUI.UpdateHearts(currentHealth, maxHealth);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -27,11 +31,12 @@ public class Base : MonoBehaviour
     private void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        healthUI.UpdateHearts(currentHealth, maxHealth);
         UnityEngine.Debug.Log("Base Health: " + currentHealth);
 
         if (currentHealth <= 0)
         {
-            SceneManager.LoadScene("Lose_Scene");
+            SceneManager.LoadScene("Gameover");
         }
     }
 
