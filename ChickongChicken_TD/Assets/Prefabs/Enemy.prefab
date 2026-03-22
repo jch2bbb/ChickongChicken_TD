@@ -34,7 +34,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3937367644701899015}
+  - {fileID: 5564995418313969391}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1823159297788987621
@@ -199,6 +199,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Free Chicken Sprites_0
       objectReference: {fileID: 0}
+    - target: {fileID: 4599477979165992704, guid: 979d709ab1acf4bc9af3cd42e128ea13, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4599477979165992704, guid: 979d709ab1acf4bc9af3cd42e128ea13, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4920782928226472168, guid: 979d709ab1acf4bc9af3cd42e128ea13, type: 3}
       propertyPath: m_LocalScale.x
       value: 6
@@ -256,8 +264,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 979d709ab1acf4bc9af3cd42e128ea13, type: 3}
---- !u!4 &3937367644701899015 stripped
+--- !u!4 &5564995418313969391 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4920782928226472168, guid: 979d709ab1acf4bc9af3cd42e128ea13, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4599477979165992704, guid: 979d709ab1acf4bc9af3cd42e128ea13, type: 3}
   m_PrefabInstance: {fileID: 8281685422425008623}
   m_PrefabAsset: {fileID: 0}
