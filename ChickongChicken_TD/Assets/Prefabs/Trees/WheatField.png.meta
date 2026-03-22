@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: b261722b261d646bfa6db78d156b2680
+guid: df3bbad523be84300b4e3d04c891b2ac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6373942132520359487
-    second: Egg_And_Nest_0
-  - first:
-      213: 765105606590446433
-    second: Egg_And_Nest_1
-  - first:
-      213: 4338608209347774417
-    second: Egg_And_Nest_2
-  - first:
-      213: -744197992327247199
-    second: Egg_And_Nest_3
+      213: -7404235014020475954
+    second: WheatField_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -84,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -109,89 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Egg_And_Nest_0
+      name: WheatField_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 546
+        height: 544
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 32a0b7242327046048dd308873e8a316
-      internalID: 6373942132520359487
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Egg_And_Nest_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8fd697d7e32574709afe98a462111193
-      internalID: 765105606590446433
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Egg_And_Nest_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 58d78ee8e5b4546f78efc710d3658ab0
-      internalID: 4338608209347774417
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Egg_And_Nest_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e6797782144a7420fa08422c6686207f
-      internalID: -744197992327247199
+      spriteID: ec3dccbeb7fde3990800000000000000
+      internalID: -7404235014020475954
       vertices: []
       indices: 
       edges: []
@@ -200,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: facc9710566df45deaeeb5985dd72584
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -208,14 +133,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Egg_And_Nest_0: 6373942132520359487
-      Egg_And_Nest_1: 765105606590446433
-      Egg_And_Nest_2: 4338608209347774417
-      Egg_And_Nest_3: -744197992327247199
+      WheatField_0: -7404235014020475954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

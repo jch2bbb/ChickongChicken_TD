@@ -1,22 +1,13 @@
 fileFormatVersion: 2
-guid: 42f614d562a5c4ebdbe8748f1c838e30
+guid: 06dbe0a6d3ce343c8b56a45325b949ec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5922754114360663000
-    second: Free Cow Sprites_0
+      213: 7267828462667370698
+    second: Setting menu_0
   - first:
-      213: -1589296601377610331
-    second: Free Cow Sprites_1
-  - first:
-      213: 1201215636998452967
-    second: Free Cow Sprites_2
-  - first:
-      213: 8911921523293518287
-    second: Free Cow Sprites_3
-  - first:
-      213: -2414581210190814732
-    second: Free Cow Sprites_4
+      213: -7390560224966502635
+    second: Setting menu_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,111 +103,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Free Cow Sprites_0
+      name: Setting menu_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 34
-        width: 27
-        height: 18
+        x: 10
+        y: 9
+        width: 108
+        height: 124
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 824ac8953862ecda0800000000000000
-      internalID: -5922754114360663000
+      spriteID: ac013cdea738cd460800000000000000
+      internalID: 7267828462667370698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Free Cow Sprites_1
+      name: Setting menu_1
       rect:
         serializedVersion: 2
-        x: 35
-        y: 34
-        width: 27
-        height: 18
+        x: 138
+        y: 9
+        width: 108
+        height: 124
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5a5e628592fa1f9e0800000000000000
-      internalID: -1589296601377610331
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Free Cow Sprites_2
-      rect:
-        serializedVersion: 2
-        x: 67
-        y: 34
-        width: 27
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e6ffede1439ba010800000000000000
-      internalID: 1201215636998452967
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Free Cow Sprites_3
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 2
-        width: 27
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fc9711678618dab70800000000000000
-      internalID: 8911921523293518287
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Free Cow Sprites_4
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 2
-        width: 27
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4f16e3dae2fad7ed0800000000000000
-      internalID: -2414581210190814732
+      spriteID: 5179dbbd1a47f6990800000000000000
+      internalID: -7390560224966502635
       vertices: []
       indices: 
       edges: []
@@ -225,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 155bba0d765de422c869ff9e77400e82
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -233,15 +158,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Free Cow Sprites_0: -5922754114360663000
-      Free Cow Sprites_1: -1589296601377610331
-      Free Cow Sprites_2: 1201215636998452967
-      Free Cow Sprites_3: 8911921523293518287
-      Free Cow Sprites_4: -2414581210190814732
+      Setting menu_0: 7267828462667370698
+      Setting menu_1: -7390560224966502635
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
