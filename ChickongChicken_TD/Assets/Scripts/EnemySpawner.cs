@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float difficultyScalingFactor = 0.75f;
     [SerializeField] private float enemiesPerSecondCap = 15f;
 
+    [Header("Victory")]
+    [SerializeField] private int enemiesToKill = 20;
+
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
 
@@ -24,6 +28,7 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesLeftToSpawn;
     private float eps; // Enemies Per Second
     private bool isSpawning = false;
+    private int enemiesKilled = 0;
 
     private void Awake()
     {
@@ -58,6 +63,12 @@ public class EnemySpawner : MonoBehaviour
     private void EnemyDestroyed()
     {
         enemiesAlive--;
+        enemiesKilled++;
+
+        if (enemiesKilled >= enemiesToKill)
+        {
+            SceneManager.LoadScene("Victory_Scene");
+        }
     }
 
     private IEnumerator StartWave()
