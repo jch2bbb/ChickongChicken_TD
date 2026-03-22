@@ -1,46 +1,3 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using System.Numerics;
-// using UnityEngine;
-
-// public class Plot : MonoBehaviour
-// {
-//     [Header("References")]
-//     [SerializeField] private SpriteRenderer sr;
-//     [SerializeField] private Color hoverColor;
-
-//     private GameObject tower;
-//     private Color startColor;
-
-//     private void Awake()
-//     {
-//         sr = GetComponent<SpriteRenderer>();
-//     }
-
-//     private void Start()
-//     {
-//         startColor = sr.color;
-//     }
-
-//     private void OnMouseEnter()
-//     {
-//         sr.color = hoverColor;
-//     }
- 
-//     private void OnMouseExit()
-//     {
-//         sr.color = startColor;
-//     }
-
-//     private void OnMouseDown()
-//     {
-//         if (tower == null) return;
-
-//         GameObject towerToBuild = BuildManager.main.GetSelectedTower();
-//         Instantiate(tower, transform.position, Quaternion.identity);
-//     }
-// }
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -89,6 +46,7 @@ public class Plot : MonoBehaviour
     private void BuildTower()
     {
         if (UIManager.main.IsHoveringUI()) return;
+
         if (towerObj != null)
         {
             tree.OpenUpgradeUI();
@@ -101,11 +59,15 @@ public class Plot : MonoBehaviour
         if (towerToBuild.cost > LevelManager.main.currency)
         {
             UnityEngine.Debug.Log("You can't afford this tower");
+            Menu menuRef = FindObjectOfType<Menu>();
+            if (menuRef != null)
+            {
+                menuRef.ShowCantAfford();
+            }
             return;
         }
 
         LevelManager.main.SpendCurrency(towerToBuild.cost);
-
         towerObj = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
         tree = towerObj.GetComponent<Tree>();
     }

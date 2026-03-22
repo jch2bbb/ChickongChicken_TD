@@ -21,6 +21,7 @@ public class Tree : MonoBehaviour
     [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private float bps = 1f;
     [SerializeField] private int baseUpgradeCost = 100;
+    [SerializeField] private int upgradeCostIncrement = 50;
 
     private float bpsBase;
     private float targetingRangeBase;
@@ -34,7 +35,6 @@ public class Tree : MonoBehaviour
     {
         bpsBase = bps;
         targetingRangeBase = targetingRange;
-
         upgradeButton.onClick.AddListener(Upgrade);
     }
 
@@ -126,9 +126,14 @@ public class Tree : MonoBehaviour
         UnityEngine.Debug.Log("New Cost: " + CalculateCost());
     }
 
+    public int GetUpgradeCost()
+    {
+        return CalculateCost();
+    }
+
     private int CalculateCost()
     {
-        return Mathf.RoundToInt(baseUpgradeCost * Mathf.Pow(level, 0.8f));
+        return baseUpgradeCost + (level - 1) * upgradeCostIncrement;
     }
 
     private float CalculateBPS()

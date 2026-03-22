@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6052978356636647035}
   - component: {fileID: 6539796704372947247}
   m_Layer: 7
-  m_Name: Bullet
+  m_Name: Bullet 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7293598183456022363, guid: 0fe2c09aea54f4f899ca40919ceab5ee, type: 3}
+  m_Sprite: {fileID: 7720945941185500035, guid: 4397f676dcec44b38b3fa0b65144db0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -170,5 +170,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Apple
   rb: {fileID: 6052978356636647035}
-  bulletSpeed: 5
+  bulletSpeed: 2
   bulletDamage: 1

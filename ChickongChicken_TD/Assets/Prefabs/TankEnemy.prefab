@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   hitPoints: 4
-  currencyWorth: 100
+  currencyWorth: 50
 --- !u!1001 &2559535537592738896
 PrefabInstance:
   m_ObjectHideFlags: 0
