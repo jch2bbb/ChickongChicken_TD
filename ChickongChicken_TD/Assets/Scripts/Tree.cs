@@ -110,7 +110,16 @@ public class Tree : MonoBehaviour
 
     public void Upgrade()
     {
-        if (CalculateCost() > LevelManager.main.currency) return;
+        if (CalculateCost() > LevelManager.main.currency)
+        {
+            // Find UpgradeUIHandler and show message
+            UpgradeUIHandler upgradeUIHandler = upgradeUI.GetComponent<UpgradeUIHandler>();
+            if (upgradeUIHandler != null)
+            {
+                upgradeUIHandler.ShowCantAffordUpgrade();
+            }
+            return;
+        }
 
         LevelManager.main.SpendCurrency(CalculateCost());
 

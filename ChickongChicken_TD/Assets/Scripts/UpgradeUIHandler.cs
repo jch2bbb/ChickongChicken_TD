@@ -8,20 +8,28 @@ public class UpgradeUIHandler : MonoBehaviour, IPointerEnterHandler, IPointerExi
 {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI upgradePriceText;
+    [SerializeField] private TextMeshProUGUI cantAffordUpgradeText;
 
     private bool mouse_over = false;
     private Tree treeRef;
 
     private void Awake()
     {
-        // Get reference in Awake instead of Start
-        // so it's ready before OnEnable fires
         treeRef = GetComponentInParent<Tree>();
+    }
+
+    private void Start()
+    {
+        if (cantAffordUpgradeText != null)
+            cantAffordUpgradeText.gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
         UpdatePriceText();
+
+        if (cantAffordUpgradeText != null)
+            cantAffordUpgradeText.gameObject.SetActive(false);
     }
 
     private void UpdatePriceText()
@@ -30,6 +38,23 @@ public class UpgradeUIHandler : MonoBehaviour, IPointerEnterHandler, IPointerExi
         {
             upgradePriceText.text = "Cost: " + treeRef.GetUpgradeCost().ToString();
         }
+    }
+
+    public void ShowCantAffordUpgrade()
+    {
+        if (cantAffordUpgradeText != null)
+        {
+            cantAffordUpgradeText.gameObject.SetActive(true);
+            StopAllCoroutines();
+            StartCoroutine(HideCantAffordAfterDelay());
+        }
+    }
+
+    private IEnumerator HideCantAffordAfterDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        if (cantAffordUpgradeText != null)
+            cantAffordUpgradeText.gameObject.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

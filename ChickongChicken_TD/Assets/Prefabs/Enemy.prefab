@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   rb: {fileID: 0}
-  moveSpeed: 2
+  moveSpeed: 1.5
 --- !u!114 &-7965104549673427907
 MonoBehaviour:
   m_ObjectHideFlags: 0
