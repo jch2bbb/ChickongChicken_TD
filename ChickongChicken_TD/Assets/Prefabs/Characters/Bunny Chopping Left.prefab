@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1742456202805269311}
   - component: {fileID: 4284873741766123298}
   m_Layer: 0
-  m_Name: Basic Charakter Actions_12
+  m_Name: Bunny Chopping Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
