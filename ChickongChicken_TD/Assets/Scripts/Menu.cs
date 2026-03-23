@@ -1,17 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Menu : MonoBehaviour
 {
+    public static Menu main;
+
     [Header("References")]
     [SerializeField] TextMeshProUGUI currencyUI;
     [SerializeField] TextMeshProUGUI selectedTowerText;
     [SerializeField] TextMeshProUGUI cantAffordText;
+    [SerializeField] Image selectedTowerImage;
     [SerializeField] Animator anim;
 
     private bool isMenuOpen = true;
+
+    private void Awake()
+    {
+        main = this;
+    }
 
     private void Start()
     {
@@ -20,6 +29,13 @@ public class Menu : MonoBehaviour
 
         if (selectedTowerText != null)
             selectedTowerText.text = "";
+
+        UpdateSelectedTowerUI();
+    }
+
+    private void Update()
+    {
+        currencyUI.text = LevelManager.main.currency.ToString();
     }
 
     public void ToggleMenu()
@@ -28,23 +44,28 @@ public class Menu : MonoBehaviour
         anim.SetBool("MenuOpen", isMenuOpen);
     }
 
-    private void Update()
+    public void UpdateSelectedTowerUI()
     {
-        currencyUI.text = LevelManager.main.currency.ToString();
-    }
-
-    public void SetSelected(int index)
-    {
-        BuildManager.main.SetSelectedTower(index);
-
         Tower selected = BuildManager.main.GetSelectedTower();
-        if (selectedTowerText != null && selected != null)
-        {
-            selectedTowerText.text = "Selected: " + selected.name;
-        }
+        if (selected == null) return;
 
-        if (cantAffordText != null)
-            cantAffordText.gameObject.SetActive(false);
+        if (selectedTowerText != null)
+            selectedTowerText.text = selected.name;
+
+        if (selectedTowerImage != null)
+        {
+            if (selected.sprite != null)
+            {
+                selectedTowerImage.sprite = selected.sprite;
+                selectedTowerImage.enabled = true;
+                selectedTowerImage.color = Color.white;
+            }
+            else
+            {
+                selectedTowerImage.enabled = false;
+                UnityEngine.Debug.Log("No sprite assigned for: " + selected.name);
+            }
+        }
     }
 
     public void ShowCantAfford()

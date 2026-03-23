@@ -58,12 +58,7 @@ public class Plot : MonoBehaviour
 
         if (towerToBuild.cost > LevelManager.main.currency)
         {
-            UnityEngine.Debug.Log("You can't afford this tower");
-            Menu menuRef = FindObjectOfType<Menu>();
-            if (menuRef != null)
-            {
-                menuRef.ShowCantAfford();
-            }
+            Menu.main.ShowCantAfford();
             return;
         }
 
