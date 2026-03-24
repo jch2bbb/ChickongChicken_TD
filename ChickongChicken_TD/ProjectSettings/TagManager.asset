@@ -3,12 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Tilemap
   - Water
   - UI
   - Enemy
@@ -41,8 +42,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Tilemap
+    uniqueID: 1814725601
+    locked: 0
+  - name: Enemy
+    uniqueID: 15033081
+    locked: 0
   - name: Tower
     uniqueID: 2245911399
+    locked: 0
+  - name: GamePlay
+    uniqueID: 563223313
     locked: 0
   - name: UI
     uniqueID: 3786730295

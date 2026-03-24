@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float difficultyScalingFactor = 0.75f;
     [SerializeField] private float enemiesPerSecondCap = 15f;
 
+    [Header("Victory")]
+    [SerializeField] private int enemiesToKill = 20;
+
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
 
@@ -22,11 +26,14 @@ public class EnemySpawner : MonoBehaviour
     private float timeSinceLastSpawn;
     private int enemiesAlive;
     private int enemiesLeftToSpawn;
-    private float eps; // Enemies Per Second
+    private float eps;
     private bool isSpawning = false;
+    private int enemiesKilled = 0;
+    private bool victoryTriggered = false;
 
     private void Awake()
     {
+        onEnemyDestroy.RemoveAllListeners();
         onEnemyDestroy.AddListener(EnemyDestroyed);
     }
 
@@ -49,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
             timeSinceLastSpawn = 0f;
         }
 
-        if (enemiesAlive == 0 && enemiesLeftToSpawn == 0)
+        if (enemiesAlive <= 0 && enemiesLeftToSpawn == 0)
         {
             EndWave();
         }
@@ -58,10 +65,25 @@ public class EnemySpawner : MonoBehaviour
     private void EnemyDestroyed()
     {
         enemiesAlive--;
+
+        if (enemiesAlive < 0) enemiesAlive = 0;
+
+        enemiesKilled++;
+
+        UnityEngine.Debug.Log("Enemy Killed: " + enemiesKilled + " / " + enemiesToKill + " | Alive: " + enemiesAlive);
+
+        if (enemiesKilled >= enemiesToKill && !victoryTriggered)
+        {
+            victoryTriggered = true;
+            UnityEngine.Debug.Log("Victory! Loading Victory Scene...");
+            SceneManager.LoadScene("Victory_Scene");
+        }
     }
 
     private IEnumerator StartWave()
     {
+        isSpawning = false;
+
         if (currentWave > 1)
         {
             yield return new WaitForSeconds(timeBetweenWaves);
@@ -71,9 +93,12 @@ public class EnemySpawner : MonoBehaviour
             yield return null;
         }
 
+        enemiesAlive = 0;
         isSpawning = true;
         enemiesLeftToSpawn = EnemiesPerWave();
         eps = EnemiesPerSecond();
+
+        UnityEngine.Debug.Log("Wave " + currentWave + " started. Enemies to spawn: " + enemiesLeftToSpawn);
     }
 
     private void EndWave()
@@ -81,6 +106,7 @@ public class EnemySpawner : MonoBehaviour
         isSpawning = false;
         timeSinceLastSpawn = 0f;
         currentWave++;
+        UnityEngine.Debug.Log("Wave ended. Starting wave " + currentWave);
         StartCoroutine(StartWave());
     }
 

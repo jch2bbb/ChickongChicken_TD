@@ -24,5 +24,6 @@ public class BuildManager : MonoBehaviour
     public void SetSelectedTower(int index)
     {
         selectedTower = index;
+        Menu.main.UpdateSelectedTowerUI();
     }
 }
