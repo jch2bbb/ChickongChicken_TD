@@ -12,10 +12,12 @@ public class UpgradeUIHandler : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     private bool mouse_over = false;
     private Tree treeRef;
+    private TreeSlowmo treeSlowmoRef;
 
     private void Awake()
     {
         treeRef = GetComponentInParent<Tree>();
+        treeSlowmoRef = GetComponentInParent<TreeSlowmo>();
     }
 
     private void Start()
@@ -34,9 +36,15 @@ public class UpgradeUIHandler : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     private void UpdatePriceText()
     {
-        if (treeRef != null && upgradePriceText != null)
+        if (upgradePriceText == null) return;
+
+        if (treeRef != null)
         {
             upgradePriceText.text = "Cost: " + treeRef.GetUpgradeCost().ToString();
+        }
+        else if (treeSlowmoRef != null)
+        {
+            upgradePriceText.text = "Cost: " + treeSlowmoRef.GetUpgradeCost().ToString();
         }
     }
 

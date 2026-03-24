@@ -36,7 +36,7 @@ public class Base : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            SceneManager.LoadScene("Gameover");
+            SceneManager.LoadScene("Lose_Scene");
         }
     }
 
