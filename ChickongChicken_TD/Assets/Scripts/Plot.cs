@@ -11,6 +11,7 @@ public class Plot : MonoBehaviour
 
     private GameObject towerObj;
     private Tree tree;
+    private TreeSlowmo treeSlowmo;
     private Color startColor;
 
     private void Awake()
@@ -26,9 +27,10 @@ public class Plot : MonoBehaviour
     private void Update()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Collider2D hit = Physics2D.OverlapPoint(mousePos);
 
-        if (hit != null && hit.gameObject == gameObject)
+        bool isHoveringThisPlot = IsMouseOverThisPlot(mousePos);
+
+        if (isHoveringThisPlot)
         {
             sr.color = hoverColor;
 
@@ -43,13 +45,34 @@ public class Plot : MonoBehaviour
         }
     }
 
+    private bool IsMouseOverThisPlot(Vector2 mousePos)
+    {
+        Collider2D[] hits = Physics2D.OverlapPointAll(mousePos);
+
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.gameObject == gameObject)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void BuildTower()
     {
         if (UIManager.main.IsHoveringUI()) return;
 
         if (towerObj != null)
         {
-            tree.OpenUpgradeUI();
+            if (tree != null)
+            {
+                tree.OpenUpgradeUI();
+            }
+            else if (treeSlowmo != null)
+            {
+                treeSlowmo.OpenUpgradeUI();
+            }
             return;
         }
 
@@ -64,6 +87,13 @@ public class Plot : MonoBehaviour
 
         LevelManager.main.SpendCurrency(towerToBuild.cost);
         towerObj = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
-        tree = towerObj.GetComponent<Tree>();
+
+        tree = towerObj.GetComponentInChildren<Tree>();
+        treeSlowmo = towerObj.GetComponentInChildren<TreeSlowmo>();
+
+        if (tree == null && treeSlowmo == null)
+        {
+            UnityEngine.Debug.LogWarning("No Tree or TreeSlowmo found on: " + towerObj.name);
+        }
     }
 }
