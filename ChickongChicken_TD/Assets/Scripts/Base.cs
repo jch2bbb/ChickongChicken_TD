@@ -16,7 +16,9 @@ public class Base : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        healthUI.UpdateHearts(currentHealth, maxHealth);
+
+        if (healthUI != null)
+            healthUI.UpdateHearts(currentHealth, maxHealth);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,14 +26,26 @@ public class Base : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             TakeDamage(1);
-            Destroy(other.gameObject);
+
+            EnemyMovement em = other.GetComponent<EnemyMovement>();
+            if (em != null)
+            {
+                em.ReachedBase();
+            }
+            else
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 
     private void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        healthUI.UpdateHearts(currentHealth, maxHealth);
+
+        if (healthUI != null)
+            healthUI.UpdateHearts(currentHealth, maxHealth);
+
         UnityEngine.Debug.Log("Base Health: " + currentHealth);
 
         if (currentHealth <= 0)

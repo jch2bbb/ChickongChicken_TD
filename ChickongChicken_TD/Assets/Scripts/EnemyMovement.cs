@@ -12,18 +12,17 @@ public class EnemyMovement : MonoBehaviour
 
     private Transform target;
     private int pathIndex = 0;
-
-    private float baseSpeed;
-
-    private void Start()
-    {
-        baseSpeed = moveSpeed;
-        target = LevelManager.main.path[pathIndex];
-    }
+    private float currentMoveSpeed;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        currentMoveSpeed = moveSpeed;
+        target = LevelManager.main.path[pathIndex];
     }
 
     private void Update()
@@ -39,26 +38,43 @@ public class EnemyMovement : MonoBehaviour
                 return;
             }
 
-            else
-            {
-                target = LevelManager.main.path[pathIndex];
-            }
+            target = LevelManager.main.path[pathIndex];
         }
     }
 
     private void FixedUpdate()
     {
         Vector2 direction = (target.position - transform.position).normalized;
-        rb.linearVelocity = direction * moveSpeed;
+        rb.linearVelocity = direction * currentMoveSpeed;
+    }
+
+    public void ApplySlow(float slowMultiplier, float duration)
+    {
+        StopCoroutine(nameof(SlowCoroutine));
+        StartCoroutine(SlowCoroutine(slowMultiplier, duration));
+    }
+
+    private IEnumerator SlowCoroutine(float slowMultiplier, float duration)
+    {
+        currentMoveSpeed = moveSpeed * slowMultiplier;
+        yield return new WaitForSeconds(duration);
+        currentMoveSpeed = moveSpeed;
     }
 
     public void UpdateSpeed(float newSpeed)
     {
-        moveSpeed = newSpeed;
+        currentMoveSpeed = newSpeed;
     }
 
     public void ResetSpeed()
     {
-        moveSpeed = baseSpeed;
+        currentMoveSpeed = moveSpeed;
+    }
+
+    // Called when enemy is destroyed by Base
+    public void ReachedBase()
+    {
+        EnemySpawner.onEnemyDestroy.Invoke();
+        Destroy(gameObject);
     }
 }

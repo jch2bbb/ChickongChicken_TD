@@ -11,6 +11,9 @@ public class LevelManager : MonoBehaviour
 
     public int currency;
 
+    [Header("Level Settings")]
+    [SerializeField] private int startingCurrency = 100;
+
     private void Awake()
     {
         main = this;
@@ -18,7 +21,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        currency = 100;
+        currency = startingCurrency;
     }
 
     public void IncreaseCurrency(int amount)
@@ -30,11 +33,9 @@ public class LevelManager : MonoBehaviour
     {
         if (amount <= currency)
         {
-            // Buy Item
             currency -= amount;
             return true;
         }
-
         else
         {
             UnityEngine.Debug.Log("You do not have enough Egg to purchase this item");
