@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -19,6 +18,10 @@ public class EnemySpawner : MonoBehaviour
     [Header("Victory")]
     [SerializeField] private int enemiesToKill = 20;
 
+    [Header("Victory Popup")]
+    [SerializeField] private GameObject victoryPopupPanel;
+    [SerializeField] private GameObject blackBG;
+
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
 
@@ -29,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
     private float eps;
     private bool isSpawning = false;
     private int enemiesKilled = 0;
-    private bool victoryTriggered = false;
+    private bool gameOver = false;
 
     private void Awake()
     {
@@ -39,12 +42,13 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f; // Ensure game is running when scene starts
         StartCoroutine(StartWave());
     }
 
     private void Update()
     {
-        if (!isSpawning) return;
+        if (!isSpawning || gameOver) return;
 
         timeSinceLastSpawn += Time.deltaTime;
 
@@ -64,20 +68,35 @@ public class EnemySpawner : MonoBehaviour
 
     private void EnemyDestroyed()
     {
-        enemiesAlive--;
+        if (gameOver) return;
 
+        enemiesAlive--;
         if (enemiesAlive < 0) enemiesAlive = 0;
 
         enemiesKilled++;
 
         UnityEngine.Debug.Log("Enemy Killed: " + enemiesKilled + " / " + enemiesToKill + " | Alive: " + enemiesAlive);
 
-        if (enemiesKilled >= enemiesToKill && !victoryTriggered)
+        if (enemiesKilled >= enemiesToKill)
         {
-            victoryTriggered = true;
-            UnityEngine.Debug.Log("Victory! Loading Victory Scene...");
-            SceneManager.LoadScene("Victory_Scene");
+            gameOver = true;
+            UnityEngine.Debug.Log("Victory!");
+            OpenVictoryPopup();
         }
+    }
+
+    private void OpenVictoryPopup()
+    {
+        if (victoryPopupPanel != null)
+            victoryPopupPanel.SetActive(true);
+
+        if (blackBG != null)
+            blackBG.SetActive(true);
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
+
+        Time.timeScale = 0f; // Freeze everything in the game
     }
 
     private IEnumerator StartWave()
@@ -93,6 +112,8 @@ public class EnemySpawner : MonoBehaviour
             yield return null;
         }
 
+        if (gameOver) yield break;
+
         enemiesAlive = 0;
         isSpawning = true;
         enemiesLeftToSpawn = EnemiesPerWave();
@@ -103,6 +124,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void EndWave()
     {
+        if (gameOver) return;
+
         isSpawning = false;
         timeSinceLastSpawn = 0f;
         currentWave++;

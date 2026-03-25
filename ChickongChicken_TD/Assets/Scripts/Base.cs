@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Base : MonoBehaviour
 {
@@ -11,7 +10,12 @@ public class Base : MonoBehaviour
     [Header("References")]
     [SerializeField] private BaseHealthUI healthUI;
 
+    [Header("Lose Popup")]
+    [SerializeField] private GameObject losePopupPanel;
+    [SerializeField] private GameObject blackBG;
+
     private int currentHealth;
+    private bool isDefeated = false;
 
     private void Start()
     {
@@ -41,6 +45,8 @@ public class Base : MonoBehaviour
 
     private void TakeDamage(int damage)
     {
+        if (isDefeated) return;
+
         currentHealth -= damage;
 
         if (healthUI != null)
@@ -50,8 +56,23 @@ public class Base : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            SceneManager.LoadScene("Lose_Scene");
+            isDefeated = true;
+            OpenLosePopup();
         }
+    }
+
+    private void OpenLosePopup()
+    {
+        if (losePopupPanel != null)
+            losePopupPanel.SetActive(true);
+
+        if (blackBG != null)
+            blackBG.SetActive(true);
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
+
+        Time.timeScale = 0f; // Freeze everything in the game
     }
 
     public int GetCurrentHealth()
