@@ -199,6 +199,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Free Chicken Sprites_0
       objectReference: {fileID: 0}
+    - target: {fileID: 2523580816031559814, guid: 979d709ab1acf4bc9af3cd42e128ea13, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d4d33105175b943098bef55fc1b782ec, type: 2}
     - target: {fileID: 4599477979165992704, guid: 979d709ab1acf4bc9af3cd42e128ea13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

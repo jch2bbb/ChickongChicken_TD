@@ -13,9 +13,13 @@ public class Bullet : MonoBehaviour
 
     private Transform target;
 
+    private Camera mainCamera;
+    private float destroyMargin = 100f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        mainCamera = Camera.main;
     }
 
     public void SetTarget(Transform _target)
@@ -29,6 +33,29 @@ public class Bullet : MonoBehaviour
 
         Vector2 direction = (target.position - transform.position).normalized;
         rb.linearVelocity = direction * bulletSpeed;
+    }
+
+    private void Update()
+    {
+        if (IsOutOfCameraBounds())
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private bool IsOutOfCameraBounds()
+    {
+        Vector3 screenPos = mainCamera.WorldToScreenPoint(transform.position);
+
+        if (screenPos.x < -destroyMargin ||
+            screenPos.x > Screen.width + destroyMargin ||
+            screenPos.y < -destroyMargin ||
+            screenPos.y > Screen.height + destroyMargin)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
