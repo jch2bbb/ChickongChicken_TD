@@ -12225,7 +12225,7 @@ PrefabInstance:
     - target: {fileID: 335793558059923677, guid: 2cdf3ea0b376d44be98a8740e3ad7d35, type: 3}
       propertyPath: blackBG
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6134502701601233987}
     - target: {fileID: 335793558059923677, guid: 2cdf3ea0b376d44be98a8740e3ad7d35, type: 3}
       propertyPath: healthUI
       value: 
@@ -12233,7 +12233,7 @@ PrefabInstance:
     - target: {fileID: 335793558059923677, guid: 2cdf3ea0b376d44be98a8740e3ad7d35, type: 3}
       propertyPath: losePopupPanel
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2334833231724118646}
     - target: {fileID: 1428618869948815876, guid: 2cdf3ea0b376d44be98a8740e3ad7d35, type: 3}
       propertyPath: m_Enabled
       value: 0
