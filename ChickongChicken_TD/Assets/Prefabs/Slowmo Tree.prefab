@@ -215,13 +215,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4987877027641111686}
     m_Modifications:
-    - target: {fileID: 291620265783182088, guid: d152b350126ad4c65bdf2452db6baae2, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 407253878251321079, guid: d152b350126ad4c65bdf2452db6baae2, type: 3}
       propertyPath: m_Name
       value: UpgradeUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 407253878251321079, guid: d152b350126ad4c65bdf2452db6baae2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1847928828084041196, guid: d152b350126ad4c65bdf2452db6baae2, type: 3}
       propertyPath: m_Pivot.x
@@ -289,7 +289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1847928828084041196, guid: d152b350126ad4c65bdf2452db6baae2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.525
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 1847928828084041196, guid: d152b350126ad4c65bdf2452db6baae2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
