@@ -88,6 +88,10 @@ public class Plot : MonoBehaviour
         LevelManager.main.SpendCurrency(towerToBuild.cost);
         towerObj = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
 
+        // Play plant tree SFX
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.plantTree);
+
         tree = towerObj.GetComponentInChildren<Tree>();
         treeSlowmo = towerObj.GetComponentInChildren<TreeSlowmo>();
 

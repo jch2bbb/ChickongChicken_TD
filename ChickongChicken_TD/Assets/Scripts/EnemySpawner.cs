@@ -94,9 +94,9 @@ public class EnemySpawner : MonoBehaviour
             blackBG.SetActive(true);
 
         if (AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.gameWin);
 
-        Time.timeScale = 0f; // Freeze everything in the game
+        Time.timeScale = 0f;
     }
 
     private IEnumerator StartWave()
@@ -120,6 +120,9 @@ public class EnemySpawner : MonoBehaviour
         eps = EnemiesPerSecond();
 
         UnityEngine.Debug.Log("Wave " + currentWave + " started. Enemies to spawn: " + enemiesLeftToSpawn);
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.waveStart);
     }
 
     private void EndWave()

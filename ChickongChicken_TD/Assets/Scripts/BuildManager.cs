@@ -25,5 +25,8 @@ public class BuildManager : MonoBehaviour
     {
         selectedTower = index;
         Menu.main.UpdateSelectedTowerUI();
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
     }
 }
