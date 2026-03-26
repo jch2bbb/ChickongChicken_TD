@@ -46,33 +46,40 @@ public class Base : MonoBehaviour
     private void TakeDamage(int damage)
     {
         if (isDefeated) return;
-
         currentHealth -= damage;
-
         if (healthUI != null)
             healthUI.UpdateHearts(currentHealth, maxHealth);
-
         UnityEngine.Debug.Log("Base Health: " + currentHealth);
 
         if (currentHealth <= 0)
         {
             isDefeated = true;
-            OpenLosePopup();
+
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.farmDestroyed);
+
+            StartCoroutine(OpenLosePopupDelayed());
+        }
+        else
+        {
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.farmDamage);
         }
     }
 
-    private void OpenLosePopup()
+    private IEnumerator OpenLosePopupDelayed()
     {
+        yield return new WaitForSeconds(1f);
+
         if (losePopupPanel != null)
             losePopupPanel.SetActive(true);
-
         if (blackBG != null)
             blackBG.SetActive(true);
 
         if (AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.gameOver);
 
-        Time.timeScale = 0f; // Freeze everything in the game
+        Time.timeScale = 0f;
     }
 
     public int GetCurrentHealth()

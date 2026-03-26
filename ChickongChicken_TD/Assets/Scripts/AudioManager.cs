@@ -46,7 +46,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip towerUpgrade;
     [Range(0f, 1f)] public float towerUpgradeVolume = 1f;
 
-
+    public AudioClip plantTree;
+    [Range(0f, 1f)] public float plantTreeVolume = 1f;
 
     void Awake()
     {
@@ -87,17 +88,17 @@ public class AudioManager : MonoBehaviour
     private float GetVolumeForClip(AudioClip clip)
     {
         if (clip == buttonClick) return buttonClickVolume;
+        if (clip == buttonStart) return buttonStartVolume;
+        if (clip == gameOver) return gameOverVolume;
+        if (clip == gameWin) return gameWinVolume;
+        if (clip == waveStart) return waveStartVolume;
         if (clip == enemyDeath) return enemyDeathVolume;
         if (clip == enemyHurt) return enemyHurtVolume;
         if (clip == farmDamage) return farmDamageVolume;
         if (clip == farmDestroyed) return farmDestroyedVolume;
-        if (clip == gameOver) return gameOverVolume;
-        if (clip == gameSong) return gameSongVolume;
-        if (clip == gameWin) return gameWinVolume;
-        if (clip == buttonStart) return buttonStartVolume;
         if (clip == towerShooting) return towerShootingVolume;
         if (clip == towerUpgrade) return towerUpgradeVolume;
-        if (clip == waveStart) return waveStartVolume;
+        if (clip == towerUpgrade) return plantTreeVolume;
 
         return 1f;
     }

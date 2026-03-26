@@ -69,6 +69,9 @@ public class Tree : MonoBehaviour
         GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
         Bullet bulletScript = bulletObj.GetComponent<Bullet>();
         bulletScript.SetTarget(target);
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.towerShooting);
     }
 
     private void FindTarget()
@@ -110,9 +113,12 @@ public class Tree : MonoBehaviour
 
     public void Upgrade()
     {
+        // Always play button click first
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
+
         if (CalculateCost() > LevelManager.main.currency)
         {
-            // Find UpgradeUIHandler and show message
             UpgradeUIHandler upgradeUIHandler = upgradeUI.GetComponent<UpgradeUIHandler>();
             if (upgradeUIHandler != null)
             {
@@ -129,6 +135,10 @@ public class Tree : MonoBehaviour
         targetingRange = CalculateRange();
 
         CloseUpgradeUI();
+
+        // Play upgrade sound after successful upgrade
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.towerUpgrade);
 
         UnityEngine.Debug.Log("New BPS: " + bps);
         UnityEngine.Debug.Log("New Range: " + targetingRange);

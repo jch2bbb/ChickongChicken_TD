@@ -93,6 +93,10 @@ public class TreeSlowmo : MonoBehaviour
 
     public void Upgrade()
     {
+        // Always play button click first
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
+
         if (CalculateCost() > LevelManager.main.currency)
         {
             UpgradeUIHandler upgradeUIHandler = upgradeUI.GetComponent<UpgradeUIHandler>();
@@ -109,6 +113,10 @@ public class TreeSlowmo : MonoBehaviour
         targetingRange = CalculateRange();
         freezeTime = CalculateFreezeTime();
         CloseUpgradeUI();
+
+        // Play upgrade sound after successful upgrade
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.towerUpgrade);
     }
 
     public int GetUpgradeCost()

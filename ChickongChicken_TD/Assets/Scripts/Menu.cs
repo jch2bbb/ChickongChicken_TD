@@ -42,6 +42,9 @@ public class Menu : MonoBehaviour
     {
         isMenuOpen = !isMenuOpen;
         anim.SetBool("MenuOpen", isMenuOpen);
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
     }
 
     public void UpdateSelectedTowerUI()
