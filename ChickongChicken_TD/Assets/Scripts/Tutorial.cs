@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemySpawner : MonoBehaviour
+public class Tutorial : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject[] enemyPrefabs;
