@@ -9,14 +9,14 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private GameObject[] enemyPrefabs;
 
     [Header("Attributes")]
-    [SerializeField] private int baseEnemies = 8;
+    [SerializeField] private int baseEnemies = 4;
     [SerializeField] private float enemiesPerSecond = 0.5f;
     [SerializeField] private float timeBetweenWaves = 5f;
     [SerializeField] private float difficultyScalingFactor = 0.75f;
     [SerializeField] private float enemiesPerSecondCap = 15f;
 
     [Header("Victory")]
-    [SerializeField] private int enemiesToKill = 20;
+    [SerializeField] private int enemiesToKill = 4;
 
     [Header("Victory Popup")]
     [SerializeField] private GameObject victoryPopupPanel;
@@ -40,9 +40,6 @@ public class Tutorial : MonoBehaviour
     [Header("Upgrade Popup (Step 4 - closed by button)")]
     [SerializeField] private GameObject upgradePopupPanel;
 
-    [Header("Events")]
-    public static UnityEvent onEnemyDestroy = new UnityEvent();
-
     private int currentWave = 1;
     private float timeSinceLastSpawn;
     private int enemiesAlive;
@@ -56,8 +53,9 @@ public class Tutorial : MonoBehaviour
 
     private void Awake()
     {
-        onEnemyDestroy.RemoveAllListeners();
-        onEnemyDestroy.AddListener(EnemyDestroyed);
+        // Listen to the same event EnemySpawner uses so enemy scripts work unchanged
+        EnemySpawner.onEnemyDestroy.RemoveAllListeners();
+        EnemySpawner.onEnemyDestroy.AddListener(EnemyDestroyed);
     }
 
     private void Start()
@@ -106,7 +104,7 @@ public class Tutorial : MonoBehaviour
         if (upgradePopupPanel != null) upgradePopupPanel.SetActive(false);
         yield return new WaitForSeconds(0.5f);
 
-        // Step 5: Wave popup (3 sec) then 5 sec countdown
+        // Step 5: Wave popup (3 sec) then 5 sec countdown — only shown once here
         if (blackBG != null) blackBG.SetActive(true);
         if (wavePopupPanel != null) wavePopupPanel.SetActive(true);
         yield return new WaitForSeconds(3f);
@@ -114,8 +112,8 @@ public class Tutorial : MonoBehaviour
         if (wavePopupPanel != null) wavePopupPanel.SetActive(false);
         yield return new WaitForSeconds(5f);
 
-        // Begin waves
-        StartCoroutine(StartWave());
+        // Begin first wave directly — skip StartWave's wave 1 popup logic
+        BeginWave();
     }
 
     public void CloseUpgradePopup()
@@ -140,7 +138,7 @@ public class Tutorial : MonoBehaviour
             timeSinceLastSpawn = 0f;
         }
 
-        // Only check end-of-wave after ALL enemies have been spawned and killed
+        // Only trigger end of wave once all spawned enemies are killed
         if (enemiesLeftToSpawn == 0 && enemiesAlive <= 0 && !waveEndHandled)
         {
             waveEndHandled = true;
@@ -186,19 +184,35 @@ public class Tutorial : MonoBehaviour
     // ---------------------------------------------------------------
     // WAVE MANAGEMENT
     // ---------------------------------------------------------------
+
+    // Called directly for wave 1 (skips the popup — already shown in sequence)
+    private void BeginWave()
+    {
+        if (gameOver) return;
+
+        waveEndHandled = false;
+        enemiesAlive = 0;
+        enemiesLeftToSpawn = EnemiesPerWave();
+        eps = EnemiesPerSecond();
+        timeSinceLastSpawn = 0f;
+        isSpawning = true;
+
+        UnityEngine.Debug.Log("Wave " + currentWave + " started. Enemies to spawn: " + enemiesLeftToSpawn);
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.waveStart);
+    }
+
+    // Called for wave 2+ (handles the between-wave delay)
     private IEnumerator StartWave()
     {
         isSpawning = false;
-        waveEndHandled = false;
+        waveEndHandled = false; // Reset so the next wave can end properly
 
-        if (currentWave > 1)
-            yield return new WaitForSeconds(timeBetweenWaves);
-        else
-            yield return null;
+        yield return new WaitForSeconds(timeBetweenWaves);
 
         if (gameOver) yield break;
 
-        // Reset counters fresh for this wave
         enemiesAlive = 0;
         enemiesLeftToSpawn = EnemiesPerWave();
         eps = EnemiesPerSecond();

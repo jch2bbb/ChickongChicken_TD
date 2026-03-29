@@ -3210,7 +3210,7 @@ MonoBehaviour:
   sfxSource: {fileID: 902791865}
   bgmSource: {fileID: 902791866}
   backgroundMusic: {fileID: 8300000, guid: b9e7c727280be4441878b4fe1d107d55, type: 3}
-  bgmVolume: 0.005
+  bgmVolume: 0.007
   buttonClick: {fileID: 8300000, guid: b3f4c2ea6d2e42d48ab6badaf1b6ff82, type: 3}
   buttonClickVolume: 0.3
   buttonStart: {fileID: 8300000, guid: dcc055dac793ff44396ddf60db377c75, type: 3}
@@ -3652,7 +3652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430ddaaf20f32be4baa69770be0fef81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextButton
-  destinationScene: Stage_Scene
+  destinationScene: Tutorial_Scene
   buttonSFX: {fileID: 8300000, guid: dcc055dac793ff44396ddf60db377c75, type: 3}
 --- !u!114 &1399685112
 MonoBehaviour:
