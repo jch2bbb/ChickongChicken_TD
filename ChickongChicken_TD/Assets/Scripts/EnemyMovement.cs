@@ -71,7 +71,8 @@ public class EnemyMovement : MonoBehaviour
         currentMoveSpeed = moveSpeed;
     }
 
-    // Called when enemy is destroyed by Base
+    // Called when enemy reaches base - only notifies spawner
+    // does NOT count as a kill
     public void ReachedBase()
     {
         EnemySpawner.onEnemyDestroy.Invoke();
