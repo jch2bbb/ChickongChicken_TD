@@ -18,10 +18,11 @@ public class Health : MonoBehaviour
         {
             isDestroyed = true;
 
-            // Only this counts as a kill â€” increases currency and kill counter
+            // Only this counts as a kill — increases currency and kill counter
             EnemySpawner.onEnemyDestroy.Invoke();
             LevelManager.main.IncreaseCurrency(currencyWorth);
             Destroy(gameObject);
         }
     }
 }
+
