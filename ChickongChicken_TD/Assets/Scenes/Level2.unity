@@ -1290,9 +1290,8 @@ MonoBehaviour:
   difficultyScalingFactor: 0.65
   enemiesPerSecondCap: 10
   enemiesToKill: 39
-  victoryPopupPanel: {fileID: 98441167344979413}
-  blackBG: {fileID: 6134502701601233987}
-  wavePopupPanel: {fileID: 1090899598}
+  isInfiniteMode: 0
+  maxDifficultyWave: 20
 --- !u!114 &393010560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6324,17 +6323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!114 &1287728580 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1207499329338907545, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
-  m_PrefabInstance: {fileID: 1336627673}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaa983b54af0b724d879c9f158dd9807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseButton
 --- !u!4 &1333937298 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3732151719038341062, guid: a45492f49c03d4d7896f85ca8ddf2fba, type: 3}
@@ -6520,6 +6508,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 393010560}
+    - target: {fileID: 6978372508488912660, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+      propertyPath: blackBG
+      value: 
+      objectReference: {fileID: 6134502701601233987}
+    - target: {fileID: 6978372508488912660, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+      propertyPath: pausePopupPanel
+      value: 
+      objectReference: {fileID: 7537028594004525295}
     - target: {fileID: 7820701115980417460, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6571,7 +6567,7 @@ PrefabInstance:
     - target: {fileID: 9030880253984999585, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1287728580}
+      objectReference: {fileID: 1336627674}
     - target: {fileID: 9030880253984999585, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnPauseButtonClicked
@@ -6589,6 +6585,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+--- !u!114 &1336627674 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6978372508488912660, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+  m_PrefabInstance: {fileID: 1336627673}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaa983b54af0b724d879c9f158dd9807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseButton
 --- !u!114 &1430066002 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3674440534709038562, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
@@ -13483,7 +13490,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1287728580}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseButton, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1

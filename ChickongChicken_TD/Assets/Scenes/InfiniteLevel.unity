@@ -2578,6 +2578,7 @@ MonoBehaviour:
   - {fileID: 1442242782}
   - {fileID: 1012805718}
   - {fileID: 966958650}
+  - {fileID: 966958650}
   currency: 0
   startingCurrency: 350
 --- !u!4 &393010558
@@ -7059,17 +7060,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 465402298}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2012276506 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2825078148866104160, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
-  m_PrefabInstance: {fileID: 3383762539446106551}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaa983b54af0b724d879c9f158dd9807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseButton
 --- !u!114 &2030736282 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3674440534709038562, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
@@ -8019,7 +8009,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2012276506}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseButton, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1

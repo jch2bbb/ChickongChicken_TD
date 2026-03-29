@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PauseButton : MonoBehaviour
 {
@@ -10,6 +11,26 @@ public class PauseButton : MonoBehaviour
 
     private bool isPaused = false;
     private bool isProcessing = false;
+
+    private void Start()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+        StartCoroutine(InitializeAfterTMP());
+    }
+
+    private IEnumerator InitializeAfterTMP()
+    {
+        // Wait two frames for TMP to fully initialize before hiding panels
+        yield return null;
+        yield return null;
+
+        if (pausePopupPanel != null)
+            pausePopupPanel.SetActive(false);
+
+        if (blackBG != null)
+            blackBG.SetActive(false);
+    }
 
     private void Update()
     {
