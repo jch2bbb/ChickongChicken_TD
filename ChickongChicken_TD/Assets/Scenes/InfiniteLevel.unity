@@ -9951,6 +9951,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1199884944208276922, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1001.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199884944208276922, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 81.2551
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199884944208276922, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -453.51492
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199884944208276922, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 488.875
+      objectReference: {fileID: 0}
     - target: {fileID: 1207499329338907545, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
       propertyPath: blackBG
       value: 
@@ -10214,12 +10230,20 @@ PrefabInstance:
         Price: $300'
       objectReference: {fileID: 0}
     - target: {fileID: 8541313124828555579, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 451.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541313124828555579, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 51.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8541313124828555579, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -814.25
+      value: -688.4375
       objectReference: {fileID: 0}
     - target: {fileID: 8541313124828555579, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 378
+      value: 377.375
       objectReference: {fileID: 0}
     - target: {fileID: 9030880253984999585, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
