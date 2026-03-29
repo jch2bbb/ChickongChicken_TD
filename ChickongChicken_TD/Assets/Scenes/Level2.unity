@@ -1289,12 +1289,12 @@ MonoBehaviour:
   timeBetweenWaves: 6
   difficultyScalingFactor: 0.65
   enemiesPerSecondCap: 10
+  enemiesToKill: 57
+  isInfiniteMode: 0
+  maxDifficultyWave: 20
   victoryPopupPanel: {fileID: 98441167344979413}
   blackBG: {fileID: 6134502701601233987}
   wavePopupPanel: {fileID: 1090899598}
-  enemiesToKill: 39
-  isInfiniteMode: 0
-  maxDifficultyWave: 20
 --- !u!114 &393010560
 MonoBehaviour:
   m_ObjectHideFlags: 0
