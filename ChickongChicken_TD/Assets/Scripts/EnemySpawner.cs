@@ -18,6 +18,10 @@ public class EnemySpawner : MonoBehaviour
     [Header("Victory")]
     [SerializeField] private int enemiesToKill = 20;
 
+    [Header("Infinite Wave")]
+    [SerializeField] private bool isInfiniteMode = false;
+    [SerializeField] private int maxDifficultyWave = 20;
+
     [Header("Victory Popup")]
     [SerializeField] private GameObject victoryPopupPanel;
     [SerializeField] private GameObject blackBG;
@@ -36,6 +40,7 @@ public class EnemySpawner : MonoBehaviour
     private bool isSpawning = false;
     private int enemiesKilled = 0;
     private bool gameOver = false;
+    private bool victoryTriggered = false;
 
     private void Awake()
     {
@@ -46,6 +51,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+        UpdateKillUI();
         StartCoroutine(StartWave());
     }
 
@@ -78,13 +84,27 @@ public class EnemySpawner : MonoBehaviour
 
         enemiesKilled++;
 
-        UnityEngine.Debug.Log("Enemy Killed: " + enemiesKilled + " / " + enemiesToKill + " | Alive: " + enemiesAlive);
+        UpdateKillUI();
 
-        if (enemiesKilled >= enemiesToKill)
+        UnityEngine.Debug.Log("Enemy Killed: " + enemiesKilled + " / " +
+            (isInfiniteMode ? "\u221E" : enemiesToKill.ToString()) +
+            " | Wave: " + currentWave +
+            " | Alive: " + enemiesAlive);
+
+        if (!isInfiniteMode && enemiesKilled >= enemiesToKill && !victoryTriggered)
         {
             gameOver = true;
+            victoryTriggered = true;
             UnityEngine.Debug.Log("Victory!");
             OpenVictoryPopup();
+        }
+    }
+
+    private void UpdateKillUI()
+    {
+        if (InfiniteWaveUI.main != null)
+        {
+            InfiniteWaveUI.main.UpdateWaveText(currentWave, enemiesKilled, enemiesToKill, isInfiniteMode);
         }
     }
 
@@ -138,6 +158,8 @@ public class EnemySpawner : MonoBehaviour
         enemiesLeftToSpawn = EnemiesPerWave();
         eps = EnemiesPerSecond();
 
+        UpdateKillUI();
+
         UnityEngine.Debug.Log("Wave " + currentWave + " started. Enemies to spawn: " + enemiesLeftToSpawn);
 
         if (AudioManager.Instance != null)
@@ -164,12 +186,25 @@ public class EnemySpawner : MonoBehaviour
 
     private int EnemiesPerWave()
     {
-        return Mathf.RoundToInt(baseEnemies * Mathf.Pow(currentWave, difficultyScalingFactor));
+        int cappedWave = isInfiniteMode ? Mathf.Min(currentWave, maxDifficultyWave) : currentWave;
+        return Mathf.RoundToInt(baseEnemies * Mathf.Pow(cappedWave, difficultyScalingFactor));
     }
 
     private float EnemiesPerSecond()
     {
-        return Mathf.Clamp(enemiesPerSecond * Mathf.Pow(currentWave, difficultyScalingFactor),
+        int cappedWave = isInfiniteMode ? Mathf.Min(currentWave, maxDifficultyWave) : currentWave;
+        return Mathf.Clamp(enemiesPerSecond * Mathf.Pow(cappedWave, difficultyScalingFactor),
             0f, enemiesPerSecondCap);
     }
+
+    public int GetCurrentWave()
+    {
+        return currentWave;
+    }
+
+    public int GetEnemiesKilled()
+    {
+        return enemiesKilled;
+    }
 }
+
