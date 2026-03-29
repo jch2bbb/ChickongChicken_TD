@@ -2671,12 +2671,12 @@ MonoBehaviour:
   timeBetweenWaves: 8
   difficultyScalingFactor: 0.5
   enemiesPerSecondCap: 5
-  victoryPopupPanel: {fileID: 7551216239170800592}
-  blackBG: {fileID: 4374355495351032390}
-  wavePopupPanel: {fileID: 1116880834}
   enemiesToKill: 24
   isInfiniteMode: 0
   maxDifficultyWave: 20
+  victoryPopupPanel: {fileID: 7551216239170800592}
+  blackBG: {fileID: 4374355495351032390}
+  wavePopupPanel: {fileID: 1116880834}
 --- !u!114 &393010560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10551,6 +10551,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1207499329338907545, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
       propertyPath: blackBG
+      value: 
+      objectReference: {fileID: 4374355495351032390}
+    - target: {fileID: 1207499329338907545, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+      propertyPath: pauseBlackBG
       value: 
       objectReference: {fileID: 4374355495351032390}
     - target: {fileID: 1207499329338907545, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}

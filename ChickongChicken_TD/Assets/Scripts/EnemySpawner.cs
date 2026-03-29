@@ -31,6 +31,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
+    public static UnityEvent onEnemyKilledByTower = new UnityEvent();
 
     private int currentWave = 1;
     private float timeSinceLastSpawn;
@@ -45,7 +46,10 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         onEnemyDestroy.RemoveAllListeners();
-        onEnemyDestroy.AddListener(EnemyDestroyed);
+        onEnemyDestroy.AddListener(EnemyRemoved);
+
+        onEnemyKilledByTower.RemoveAllListeners();
+        onEnemyKilledByTower.AddListener(EnemyKilledByTower);
     }
 
     private void Start()
@@ -75,18 +79,27 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void EnemyDestroyed()
+    // Called when ANY enemy is removed (killed by tower OR reached base)
+    // Only tracks enemiesAlive for wave management
+    private void EnemyRemoved()
     {
         if (gameOver) return;
 
         enemiesAlive--;
         if (enemiesAlive < 0) enemiesAlive = 0;
+    }
+
+    // Called ONLY when enemy is killed by tower
+    // Tracks kill count for victory condition and UI
+    private void EnemyKilledByTower()
+    {
+        if (gameOver) return;
 
         enemiesKilled++;
 
         UpdateKillUI();
 
-        UnityEngine.Debug.Log("Enemy Killed: " + enemiesKilled + " / " +
+        UnityEngine.Debug.Log("Enemy Killed by Tower: " + enemiesKilled + " / " +
             (isInfiniteMode ? "\u221E" : enemiesToKill.ToString()) +
             " | Wave: " + currentWave +
             " | Alive: " + enemiesAlive);
@@ -137,7 +150,6 @@ public class EnemySpawner : MonoBehaviour
 
         if (gameOver) yield break;
 
-        // Show wave popup on first wave only
         if (currentWave == 1)
         {
             if (blackBG != null) blackBG.SetActive(true);
@@ -207,4 +219,5 @@ public class EnemySpawner : MonoBehaviour
         return enemiesKilled;
     }
 }
+
 

@@ -9956,6 +9956,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4374355495351032390}
     - target: {fileID: 1207499329338907545, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+      propertyPath: pauseBlackBG
+      value: 
+      objectReference: {fileID: 4374355495351032390}
+    - target: {fileID: 1207499329338907545, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
       propertyPath: pausePopupPanel
       value: 
       objectReference: {fileID: 76019150684325610}

@@ -16,19 +16,13 @@ public class Health : MonoBehaviour
 
         if (hitPoints <= 0 && !isDestroyed)
         {
-            EnemySpawner.onEnemyDestroy.Invoke();
-            LevelManager.main.IncreaseCurrency(currencyWorth);
             isDestroyed = true;
 
-            if (AudioManager.Instance != null)
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyDeath);
-
+            // Only this counts as a kill — increases currency and kill counter
+            EnemySpawner.onEnemyDestroy.Invoke();
+            LevelManager.main.IncreaseCurrency(currencyWorth);
             Destroy(gameObject);
-        }
-        else
-        {
-            if (AudioManager.Instance != null)
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.enemyHurt);
         }
     }
 }
+

@@ -11738,7 +11738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseButton
   pausePopupPanel: {fileID: 76019150684325610}
-  blackBG: {fileID: 4374355495351032390}
+  pauseBlackBG: {fileID: 4374355495351032390}
 --- !u!224 &1209540246280267748
 RectTransform:
   m_ObjectHideFlags: 0
