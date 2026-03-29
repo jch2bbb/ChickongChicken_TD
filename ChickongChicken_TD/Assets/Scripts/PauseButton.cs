@@ -1,15 +1,27 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PauseButton : MonoBehaviour
 {
     [Header("Pause Popup")]
     [SerializeField] private GameObject pausePopupPanel;
-    [SerializeField] private GameObject blackBG;
+    [SerializeField] private GameObject pauseBlackBG;
 
     private bool isPaused = false;
     private bool isProcessing = false;
+
+    private void Start()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+
+        // Directly hide pause panel only — don't touch blackBG
+        // since other systems (wave popup, tutorial) may use it
+        if (pausePopupPanel != null)
+            pausePopupPanel.SetActive(false);
+    }
 
     private void Update()
     {
@@ -42,8 +54,8 @@ public class PauseButton : MonoBehaviour
         if (pausePopupPanel != null)
             pausePopupPanel.SetActive(true);
 
-        if (blackBG != null)
-            blackBG.SetActive(true);
+        if (pauseBlackBG != null)
+            pauseBlackBG.SetActive(true);
 
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
@@ -61,8 +73,8 @@ public class PauseButton : MonoBehaviour
         if (pausePopupPanel != null)
             pausePopupPanel.SetActive(false);
 
-        if (blackBG != null)
-            blackBG.SetActive(false);
+        if (pauseBlackBG != null)
+            pauseBlackBG.SetActive(false);
 
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
@@ -71,3 +83,5 @@ public class PauseButton : MonoBehaviour
         isProcessing = false;
     }
 }
+
+
