@@ -11737,8 +11737,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa983b54af0b724d879c9f158dd9807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseButton
-  pausePopupPanel: {fileID: 0}
-  blackBG: {fileID: 0}
+  pausePopupPanel: {fileID: 76019150684325610}
+  blackBG: {fileID: 4374355495351032390}
 --- !u!224 &1209540246280267748
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11757,10 +11757,10 @@ RectTransform:
   - {fileID: 1200478869}
   - {fileID: 1004744362}
   - {fileID: 1394675938435377413}
-  - {fileID: 8551488996240002391}
   - {fileID: 127889841}
   - {fileID: 67484995}
   - {fileID: 611642792}
+  - {fileID: 8551488996240002391}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -12201,7 +12201,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1207499329653944672}
         m_TargetAssemblyTypeName: PauseButton, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
@@ -12696,7 +12696,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 393010560}
         m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
         m_MethodName: SetSelectedTower
         m_Mode: 3
@@ -13625,20 +13625,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2825078149449970073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8754698469957331724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaa983b54af0b724d879c9f158dd9807, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseButton
-  pausePopupPanel: {fileID: 0}
-  blackBG: {fileID: 0}
 --- !u!114 &2832364208350265800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14089,7 +14075,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 393010560}
         m_TargetAssemblyTypeName: BuildManager, Assembly-CSharp
         m_MethodName: SetSelectedTower
         m_Mode: 3
@@ -18027,7 +18013,6 @@ GameObject:
   - component: {fileID: 231666489130299567}
   - component: {fileID: 9030880254433075800}
   - component: {fileID: 1207499329653944672}
-  - component: {fileID: 2825078149449970073}
   m_Layer: 0
   m_Name: Pause Button
   m_TagString: Untagged
@@ -18280,7 +18265,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2825078149449970073}
+      - m_Target: {fileID: 1207499329653944672}
         m_TargetAssemblyTypeName: PauseButton, Assembly-CSharp
         m_MethodName: OnPauseButtonClicked
         m_Mode: 1

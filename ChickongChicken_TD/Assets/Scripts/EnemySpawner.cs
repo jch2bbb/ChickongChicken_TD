@@ -16,6 +16,13 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float difficultyScalingFactor = 0.75f;
     [SerializeField] private float enemiesPerSecondCap = 15f;
 
+    [Header("Victory Popup")]
+    [SerializeField] private GameObject victoryPopupPanel;
+    [SerializeField] private GameObject blackBG;
+
+    [Header("Wave Popup")]
+    [SerializeField] private GameObject wavePopupPanel;
+
     [Header("Victory")]
     [SerializeField] private int enemiesToKill = 20;
 
@@ -86,8 +93,22 @@ public class EnemySpawner : MonoBehaviour
         {
             victoryTriggered = true;
             UnityEngine.Debug.Log("Victory! Loading Victory Scene...");
-            SceneManager.LoadScene("Victory_Scene");
+            OpenVictoryPopup();
         }
+    }
+
+    private void OpenVictoryPopup()
+    {
+        if (victoryPopupPanel != null)
+            victoryPopupPanel.SetActive(true);
+
+        if (blackBG != null)
+            blackBG.SetActive(true);
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.gameWin);
+
+        Time.timeScale = 0f;
     }
 
     private void UpdateKillUI()

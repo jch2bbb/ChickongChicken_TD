@@ -2671,10 +2671,12 @@ MonoBehaviour:
   timeBetweenWaves: 8
   difficultyScalingFactor: 0.5
   enemiesPerSecondCap: 5
-  enemiesToKill: 24
   victoryPopupPanel: {fileID: 7551216239170800592}
   blackBG: {fileID: 4374355495351032390}
   wavePopupPanel: {fileID: 1116880834}
+  enemiesToKill: 24
+  isInfiniteMode: 0
+  maxDifficultyWave: 20
 --- !u!114 &393010560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8043,25 +8045,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 465402298}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2012276504 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8754698470674743797, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+--- !u!114 &2012276506 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1207499329338907545, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
   m_PrefabInstance: {fileID: 3383762539446106551}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2012276506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012276504}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aaa983b54af0b724d879c9f158dd9807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseButton
-  pausePopupPanel: {fileID: 76019150684325610}
-  blackBG: {fileID: 4374355495351032390}
 --- !u!1 &2014815041
 GameObject:
   m_ObjectHideFlags: 0
@@ -8855,7 +8849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430ddaaf20f32be4baa69770be0fef81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextButton
-  destinationScene: Level1
+  destinationScene: 
   buttonSFX: {fileID: 8300000, guid: b3f4c2ea6d2e42d48ab6badaf1b6ff82, type: 3}
 --- !u!222 &1306419813525199025
 CanvasRenderer:
@@ -10555,6 +10549,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1207499329338907545, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+      propertyPath: blackBG
+      value: 
+      objectReference: {fileID: 4374355495351032390}
+    - target: {fileID: 1207499329338907545, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
+      propertyPath: pausePopupPanel
+      value: 
+      objectReference: {fileID: 76019150684325610}
     - target: {fileID: 1209540247006596381, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -10843,13 +10845,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8754698470674743797, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2012276506}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb761ef8db98c45578fb746be7bbe1dd, type: 3}
 --- !u!222 &3405147126431855758
 CanvasRenderer:
