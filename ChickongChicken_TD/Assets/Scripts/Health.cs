@@ -14,15 +14,32 @@ public class Health : MonoBehaviour
     {
         hitPoints -= dmg;
 
+        UnityEngine.Debug.Log("TakeDamage called. HP left: " + hitPoints);
+
         if (hitPoints <= 0 && !isDestroyed)
         {
             isDestroyed = true;
 
-            // Only this counts as a kill — increases currency and kill counter
-            EnemySpawner.onEnemyDestroy.Invoke();
+            UnityEngine.Debug.Log("Enemy dead. EnemySpawner.main is: " + 
+                (EnemySpawner.main != null ? "Found" : "NULL"));
+
+            UnityEngine.Debug.Log("InfiniteWaveUI.main is: " + 
+                (InfiniteWaveUI.main != null ? "Found" : "NULL"));
+
             LevelManager.main.IncreaseCurrency(currencyWorth);
+
+            if (EnemySpawner.main != null)
+            {
+                EnemySpawner.main.EnemyKilledByTower();
+                UnityEngine.Debug.Log("EnemyKilledByTower called successfully");
+            }
+            else
+            {
+                UnityEngine.Debug.LogWarning("EnemySpawner.main is NULL â€” cannot count kill!");
+            }
+
+            EnemySpawner.onEnemyDestroy.Invoke();
             Destroy(gameObject);
         }
     }
 }
-

@@ -10578,7 +10578,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '+ Freeze  Duration
+  m_text: '+ Freeze Duration
 
     + Freeze Range'
   m_isRightToLeft: 0

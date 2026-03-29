@@ -50,7 +50,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void ApplySlow(float slowMultiplier, float duration)
     {
-        StopCoroutine(nameof(SlowCoroutine));
+        StopAllCoroutines();
         StartCoroutine(SlowCoroutine(slowMultiplier, duration));
     }
 
@@ -71,12 +71,10 @@ public class EnemyMovement : MonoBehaviour
         currentMoveSpeed = moveSpeed;
     }
 
-    // Called when enemy reaches base - only notifies spawner
-    // does NOT count as a kill
     public void ReachedBase()
     {
+        // Notify spawner enemy is gone but do NOT count as kill
         EnemySpawner.onEnemyDestroy.Invoke();
         Destroy(gameObject);
     }
 }
-

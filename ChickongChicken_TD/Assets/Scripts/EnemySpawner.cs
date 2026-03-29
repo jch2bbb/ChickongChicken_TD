@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner main;
+
     [Header("References")]
     [SerializeField] private GameObject[] enemyPrefabs;
 
@@ -31,7 +33,6 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
-    public static UnityEvent onEnemyKilledByTower = new UnityEvent();
 
     private int currentWave = 1;
     private float timeSinceLastSpawn;
@@ -45,11 +46,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
+        main = this;
         onEnemyDestroy.RemoveAllListeners();
         onEnemyDestroy.AddListener(EnemyRemoved);
-
-        onEnemyKilledByTower.RemoveAllListeners();
-        onEnemyKilledByTower.AddListener(EnemyKilledByTower);
     }
 
     private void Start()
@@ -79,8 +78,6 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    // Called when ANY enemy is removed (killed by tower OR reached base)
-    // Only tracks enemiesAlive for wave management
     private void EnemyRemoved()
     {
         if (gameOver) return;
@@ -89,26 +86,20 @@ public class EnemySpawner : MonoBehaviour
         if (enemiesAlive < 0) enemiesAlive = 0;
     }
 
-    // Called ONLY when enemy is killed by tower
-    // Tracks kill count for victory condition and UI
-    private void EnemyKilledByTower()
+    public void EnemyKilledByTower()
     {
         if (gameOver) return;
 
         enemiesKilled++;
-
         UpdateKillUI();
 
-        UnityEngine.Debug.Log("Enemy Killed by Tower: " + enemiesKilled + " / " +
-            (isInfiniteMode ? "\u221E" : enemiesToKill.ToString()) +
-            " | Wave: " + currentWave +
-            " | Alive: " + enemiesAlive);
+        UnityEngine.Debug.Log("Killed by tower: " + enemiesKilled + "/" +
+            (isInfiniteMode ? "\u221E" : enemiesToKill.ToString()));
 
         if (!isInfiniteMode && enemiesKilled >= enemiesToKill && !victoryTriggered)
         {
             gameOver = true;
             victoryTriggered = true;
-            UnityEngine.Debug.Log("Victory!");
             OpenVictoryPopup();
         }
     }
@@ -172,7 +163,7 @@ public class EnemySpawner : MonoBehaviour
 
         UpdateKillUI();
 
-        UnityEngine.Debug.Log("Wave " + currentWave + " started. Enemies to spawn: " + enemiesLeftToSpawn);
+        UnityEngine.Debug.Log("Wave " + currentWave + " started. Enemies: " + enemiesLeftToSpawn);
 
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(AudioManager.Instance.waveStart);
@@ -185,7 +176,6 @@ public class EnemySpawner : MonoBehaviour
         isSpawning = false;
         timeSinceLastSpawn = 0f;
         currentWave++;
-        UnityEngine.Debug.Log("Wave ended. Starting wave " + currentWave);
         StartCoroutine(StartWave());
     }
 
@@ -209,15 +199,6 @@ public class EnemySpawner : MonoBehaviour
             0f, enemiesPerSecondCap);
     }
 
-    public int GetCurrentWave()
-    {
-        return currentWave;
-    }
-
-    public int GetEnemiesKilled()
-    {
-        return enemiesKilled;
-    }
+    public int GetCurrentWave() { return currentWave; }
+    public int GetEnemiesKilled() { return enemiesKilled; }
 }
-
-
