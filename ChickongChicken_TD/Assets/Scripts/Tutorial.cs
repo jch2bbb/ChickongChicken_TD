@@ -25,6 +25,21 @@ public class Tutorial : MonoBehaviour
     [Header("Wave Popup")]
     [SerializeField] private GameObject wavePopupPanel;
 
+    [Header("Tutorial Popup (Step 1)")]
+    [SerializeField] private GameObject tutorialPopupPanel;
+
+    [Header("Health Popups (Step 2)")]
+    [SerializeField] private GameObject healthBlackBG;
+    [SerializeField] private GameObject healthDescriptionPopup;
+    [SerializeField] private GameObject healthDescriptionPopup1;
+
+    [Header("Shop Popups (Step 3)")]
+    [SerializeField] private GameObject shopBlackBG;
+    [SerializeField] private GameObject shopPopupPanel;
+
+    [Header("Upgrade Popup (Step 4 - closed by button)")]
+    [SerializeField] private GameObject upgradePopupPanel;
+
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
 
@@ -36,6 +51,8 @@ public class Tutorial : MonoBehaviour
     private bool isSpawning = false;
     private int enemiesKilled = 0;
     private bool gameOver = false;
+    private bool upgradePopupClosed = false;
+    private bool waveEndHandled = false;
 
     private void Awake()
     {
@@ -46,9 +63,69 @@ public class Tutorial : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+        StartCoroutine(RunTutorialSequence());
+    }
+
+    // ---------------------------------------------------------------
+    // TUTORIAL SEQUENCE
+    // ---------------------------------------------------------------
+    private IEnumerator RunTutorialSequence()
+    {
+        // Step 1: Tutorial intro (3 sec)
+        if (blackBG != null) blackBG.SetActive(true);
+        if (tutorialPopupPanel != null) tutorialPopupPanel.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        if (blackBG != null) blackBG.SetActive(false);
+        if (tutorialPopupPanel != null) tutorialPopupPanel.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+
+        // Step 2: Health popups (5 sec)
+        if (healthBlackBG != null) healthBlackBG.SetActive(true);
+        if (healthDescriptionPopup != null) healthDescriptionPopup.SetActive(true);
+        if (healthDescriptionPopup1 != null) healthDescriptionPopup1.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        if (healthBlackBG != null) healthBlackBG.SetActive(false);
+        if (healthDescriptionPopup != null) healthDescriptionPopup.SetActive(false);
+        if (healthDescriptionPopup1 != null) healthDescriptionPopup1.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+
+        // Step 3: Shop popup (5 sec)
+        if (shopBlackBG != null) shopBlackBG.SetActive(true);
+        if (shopPopupPanel != null) shopPopupPanel.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        if (shopBlackBG != null) shopBlackBG.SetActive(false);
+        if (shopPopupPanel != null) shopPopupPanel.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+
+        // Step 4: Upgrade popup (wait for close button)
+        upgradePopupClosed = false;
+        if (blackBG != null) blackBG.SetActive(true);
+        if (upgradePopupPanel != null) upgradePopupPanel.SetActive(true);
+        yield return new WaitUntil(() => upgradePopupClosed);
+        if (blackBG != null) blackBG.SetActive(false);
+        if (upgradePopupPanel != null) upgradePopupPanel.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+
+        // Step 5: Wave popup (3 sec) then 5 sec countdown
+        if (blackBG != null) blackBG.SetActive(true);
+        if (wavePopupPanel != null) wavePopupPanel.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        if (blackBG != null) blackBG.SetActive(false);
+        if (wavePopupPanel != null) wavePopupPanel.SetActive(false);
+        yield return new WaitForSeconds(5f);
+
+        // Begin waves
         StartCoroutine(StartWave());
     }
 
+    public void CloseUpgradePopup()
+    {
+        upgradePopupClosed = true;
+    }
+
+    // ---------------------------------------------------------------
+    // UPDATE — spawning loop
+    // ---------------------------------------------------------------
     private void Update()
     {
         if (!isSpawning || gameOver) return;
@@ -63,12 +140,17 @@ public class Tutorial : MonoBehaviour
             timeSinceLastSpawn = 0f;
         }
 
-        if (enemiesAlive <= 0 && enemiesLeftToSpawn == 0)
+        // Only check end-of-wave after ALL enemies have been spawned and killed
+        if (enemiesLeftToSpawn == 0 && enemiesAlive <= 0 && !waveEndHandled)
         {
+            waveEndHandled = true;
             EndWave();
         }
     }
 
+    // ---------------------------------------------------------------
+    // ENEMY DESTROYED
+    // ---------------------------------------------------------------
     private void EnemyDestroyed()
     {
         if (gameOver) return;
@@ -77,8 +159,7 @@ public class Tutorial : MonoBehaviour
         if (enemiesAlive < 0) enemiesAlive = 0;
 
         enemiesKilled++;
-
-        UnityEngine.Debug.Log("Enemy Killed: " + enemiesKilled + " / " + enemiesToKill + " | Alive: " + enemiesAlive);
+        UnityEngine.Debug.Log("Enemy Killed: " + enemiesKilled + " / " + enemiesToKill + " | Alive: " + enemiesAlive + " | Left to spawn: " + enemiesLeftToSpawn);
 
         if (enemiesKilled >= enemiesToKill)
         {
@@ -102,41 +183,27 @@ public class Tutorial : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    // ---------------------------------------------------------------
+    // WAVE MANAGEMENT
+    // ---------------------------------------------------------------
     private IEnumerator StartWave()
     {
         isSpawning = false;
+        waveEndHandled = false;
 
         if (currentWave > 1)
-        {
             yield return new WaitForSeconds(timeBetweenWaves);
-        }
         else
-        {
             yield return null;
-        }
 
         if (gameOver) yield break;
 
-        // Show wave popup on first wave only
-        if (currentWave == 1)
-        {
-            if (blackBG != null) blackBG.SetActive(true);
-            if (wavePopupPanel != null) wavePopupPanel.SetActive(true);
-
-            yield return new WaitForSeconds(5f);
-
-            if (blackBG != null) blackBG.SetActive(false);
-            if (wavePopupPanel != null) wavePopupPanel.SetActive(false);
-
-            yield return new WaitForSeconds(3f);
-
-            if (gameOver) yield break;
-        }
-
+        // Reset counters fresh for this wave
         enemiesAlive = 0;
-        isSpawning = true;
         enemiesLeftToSpawn = EnemiesPerWave();
         eps = EnemiesPerSecond();
+        timeSinceLastSpawn = 0f;
+        isSpawning = true;
 
         UnityEngine.Debug.Log("Wave " + currentWave + " started. Enemies to spawn: " + enemiesLeftToSpawn);
 
@@ -151,6 +218,7 @@ public class Tutorial : MonoBehaviour
         isSpawning = false;
         timeSinceLastSpawn = 0f;
         currentWave++;
+
         UnityEngine.Debug.Log("Wave ended. Starting wave " + currentWave);
         StartCoroutine(StartWave());
     }

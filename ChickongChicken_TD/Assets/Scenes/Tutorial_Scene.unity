@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 2507728}
   - component: {fileID: 2507727}
   - component: {fileID: 2507726}
-  - component: {fileID: 2507725}
   m_Layer: 5
   m_Name: Close Button
   m_TagString: Untagged
@@ -159,20 +158,6 @@ RectTransform:
   m_AnchoredPosition: {x: 558.10974, y: 357.0276}
   m_SizeDelta: {x: 70, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2507725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2507723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 430ddaaf20f32be4baa69770be0fef81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NextButton
-  destinationScene: Stage_Scene
-  buttonSFX: {fileID: 8300000, guid: b3f4c2ea6d2e42d48ab6badaf1b6ff82, type: 3}
 --- !u!114 &2507726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,9 +202,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2507725}
-        m_TargetAssemblyTypeName: NextButton, Assembly-CSharp
-        m_MethodName: OnNextButtonClicked
+      - m_Target: {fileID: 393010562}
+        m_TargetAssemblyTypeName: Tutorial, Assembly-CSharp
+        m_MethodName: CloseUpgradePopup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3391,12 +3376,19 @@ MonoBehaviour:
   baseEnemies: 4
   enemiesPerSecond: 0.5
   timeBetweenWaves: 5
-  difficultyScalingFactor: 0.2
+  difficultyScalingFactor: 0.3
   enemiesPerSecondCap: 15
-  enemiesToKill: 20
+  enemiesToKill: 4
   victoryPopupPanel: {fileID: 7551216239170800592}
   blackBG: {fileID: 4374355495351032390}
   wavePopupPanel: {fileID: 665366910}
+  tutorialPopupPanel: {fileID: 1628163869}
+  healthBlackBG: {fileID: 127889840}
+  healthDescriptionPopup: {fileID: 67484994}
+  healthDescriptionPopup1: {fileID: 611642791}
+  shopBlackBG: {fileID: 1200478868}
+  shopPopupPanel: {fileID: 1004744361}
+  upgradePopupPanel: {fileID: 345089848}
 --- !u!1 &429664554
 GameObject:
   m_ObjectHideFlags: 0
@@ -4766,7 +4758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1004744362
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5621,7 +5613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1200478869
 RectTransform:
   m_ObjectHideFlags: 0
