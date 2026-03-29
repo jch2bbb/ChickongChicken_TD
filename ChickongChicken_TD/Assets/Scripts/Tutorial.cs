@@ -119,6 +119,9 @@ public class Tutorial : MonoBehaviour
     public void CloseUpgradePopup()
     {
         upgradePopupClosed = true;
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
     }
 
     // ---------------------------------------------------------------
