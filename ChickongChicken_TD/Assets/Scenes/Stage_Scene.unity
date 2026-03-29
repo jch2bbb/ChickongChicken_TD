@@ -9628,8 +9628,8 @@ MonoBehaviour:
   blackBG: {fileID: 145261876}
   stageName_1: Level 2
   stageName_2: Level 2
-  Goal_1: 'Goal: defend 39 enemies'
-  Goal_2: 'Goal: defend 39 enemies'
+  Goal_1: 'Goal: defend 57 enemies'
+  Goal_2: 'Goal: defend 57 enemies'
   sceneName: Level2
 --- !u!114 &1948315961
 MonoBehaviour:
