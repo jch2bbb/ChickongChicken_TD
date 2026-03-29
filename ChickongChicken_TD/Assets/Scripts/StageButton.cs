@@ -39,7 +39,7 @@ public class StageButton : MonoBehaviour
     {
         if (popupPanel != null)
             popupPanel.SetActive(false);
-        blackBG.SetActive(false);
+            blackBG.SetActive(false);
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(AudioManager.Instance.buttonClick);
     }
