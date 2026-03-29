@@ -16,7 +16,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private float enemiesPerSecondCap = 15f;
 
     [Header("Victory")]
-    [SerializeField] private int enemiesToKill = 4;
+    [SerializeField] private int enemiesToKill = 11;
 
     [Header("Victory Popup")]
     [SerializeField] private GameObject victoryPopupPanel;
@@ -53,7 +53,6 @@ public class Tutorial : MonoBehaviour
 
     private void Awake()
     {
-        // Listen to the same event EnemySpawner uses so enemy scripts work unchanged
         EnemySpawner.onEnemyDestroy.RemoveAllListeners();
         EnemySpawner.onEnemyDestroy.AddListener(EnemyDestroyed);
     }
@@ -61,7 +60,22 @@ public class Tutorial : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+
+        // Show initial kill UI as 0/enemiesToKill
+        UpdateKillUI();
+
         StartCoroutine(RunTutorialSequence());
+    }
+
+    // ---------------------------------------------------------------
+    // KILL UI UPDATE
+    // ---------------------------------------------------------------
+    private void UpdateKillUI()
+    {
+        if (InfiniteWaveUI.main != null)
+        {
+            InfiniteWaveUI.main.UpdateWaveText(currentWave, enemiesKilled, enemiesToKill, false);
+        }
     }
 
     // ---------------------------------------------------------------
@@ -104,7 +118,7 @@ public class Tutorial : MonoBehaviour
         if (upgradePopupPanel != null) upgradePopupPanel.SetActive(false);
         yield return new WaitForSeconds(0.5f);
 
-        // Step 5: Wave popup (3 sec) then 5 sec countdown — only shown once here
+        // Step 5: Wave popup (3 sec) then 5 sec countdown
         if (blackBG != null) blackBG.SetActive(true);
         if (wavePopupPanel != null) wavePopupPanel.SetActive(true);
         yield return new WaitForSeconds(3f);
@@ -112,7 +126,7 @@ public class Tutorial : MonoBehaviour
         if (wavePopupPanel != null) wavePopupPanel.SetActive(false);
         yield return new WaitForSeconds(5f);
 
-        // Begin first wave directly — skip StartWave's wave 1 popup logic
+        // Begin first wave
         BeginWave();
     }
 
@@ -125,7 +139,7 @@ public class Tutorial : MonoBehaviour
     }
 
     // ---------------------------------------------------------------
-    // UPDATE — spawning loop
+    // UPDATE - spawning loop
     // ---------------------------------------------------------------
     private void Update()
     {
@@ -141,7 +155,6 @@ public class Tutorial : MonoBehaviour
             timeSinceLastSpawn = 0f;
         }
 
-        // Only trigger end of wave once all spawned enemies are killed
         if (enemiesLeftToSpawn == 0 && enemiesAlive <= 0 && !waveEndHandled)
         {
             waveEndHandled = true;
@@ -160,6 +173,9 @@ public class Tutorial : MonoBehaviour
         if (enemiesAlive < 0) enemiesAlive = 0;
 
         enemiesKilled++;
+
+        UpdateKillUI();
+
         UnityEngine.Debug.Log("Enemy Killed: " + enemiesKilled + " / " + enemiesToKill + " | Alive: " + enemiesAlive + " | Left to spawn: " + enemiesLeftToSpawn);
 
         if (enemiesKilled >= enemiesToKill)
@@ -187,8 +203,6 @@ public class Tutorial : MonoBehaviour
     // ---------------------------------------------------------------
     // WAVE MANAGEMENT
     // ---------------------------------------------------------------
-
-    // Called directly for wave 1 (skips the popup — already shown in sequence)
     private void BeginWave()
     {
         if (gameOver) return;
@@ -200,17 +214,18 @@ public class Tutorial : MonoBehaviour
         timeSinceLastSpawn = 0f;
         isSpawning = true;
 
+        UpdateKillUI();
+
         UnityEngine.Debug.Log("Wave " + currentWave + " started. Enemies to spawn: " + enemiesLeftToSpawn);
 
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX(AudioManager.Instance.waveStart);
     }
 
-    // Called for wave 2+ (handles the between-wave delay)
     private IEnumerator StartWave()
     {
         isSpawning = false;
-        waveEndHandled = false; // Reset so the next wave can end properly
+        waveEndHandled = false;
 
         yield return new WaitForSeconds(timeBetweenWaves);
 
@@ -221,6 +236,8 @@ public class Tutorial : MonoBehaviour
         eps = EnemiesPerSecond();
         timeSinceLastSpawn = 0f;
         isSpawning = true;
+
+        UpdateKillUI();
 
         UnityEngine.Debug.Log("Wave " + currentWave + " started. Enemies to spawn: " + enemiesLeftToSpawn);
 
