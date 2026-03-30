@@ -3244,7 +3244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430ddaaf20f32be4baa69770be0fef81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextButton
-  destinationScene: Home_Scene
+  destinationScene: Home_Scene2
   buttonSFX: {fileID: 8300000, guid: b3f4c2ea6d2e42d48ab6badaf1b6ff82, type: 3}
 --- !u!114 &571339341
 MonoBehaviour:
