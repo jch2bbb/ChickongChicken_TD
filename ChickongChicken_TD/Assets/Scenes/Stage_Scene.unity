@@ -3920,7 +3920,7 @@ GameObject:
   - component: {fileID: 777082781}
   - component: {fileID: 777082780}
   m_Layer: 5
-  m_Name: Popup Panel (1)
+  m_Name: Tutorial Popup Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
