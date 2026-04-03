@@ -1619,7 +1619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 187.1575, y: 105.276}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &145261878
@@ -1694,7 +1694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.24841309, y: 12.297012}
+  m_AnchoredPosition: {x: 0.24841309, y: 12.296997}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &331207385
@@ -3244,7 +3244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430ddaaf20f32be4baa69770be0fef81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextButton
-  destinationScene: Home_Scene
+  destinationScene: Home_Scene2
   buttonSFX: {fileID: 8300000, guid: b3f4c2ea6d2e42d48ab6badaf1b6ff82, type: 3}
 --- !u!114 &571339341
 MonoBehaviour:
@@ -3920,7 +3920,7 @@ GameObject:
   - component: {fileID: 777082781}
   - component: {fileID: 777082780}
   m_Layer: 5
-  m_Name: Popup Panel (1)
+  m_Name: Tutorial Popup Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
